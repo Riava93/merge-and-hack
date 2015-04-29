@@ -32,7 +32,7 @@ module.exports = (grunt) ->
         files: [{
           action: 'upload'
           expand: true
-          cwd: '<%= dir.tmp %>'
+          cwd: '<%= dir.dist %>'
           src: ['**']
           dest: '/'
         }]
@@ -68,7 +68,7 @@ module.exports = (grunt) ->
 
     concat:
       sass:
-        src: ['app/_config/**.sass', 'app/app.sass', 'app/**/**.sass'],
+        src: ['<%= dir.app %>/_config/**.sass', '<%= dir.app %>/app.sass', '<%= dir.app %>/**/**.sass'],
         dest: '<%= dir.tmp %>/app.sass'
       js:
         src: [
@@ -132,6 +132,12 @@ module.exports = (grunt) ->
   })
 
   grunt.registerTask 'default', [
+    'build'
+    'connect'
+    'watch'
+  ]
+
+  grunt.registerTask 'build', [
     'bower_concat'
     'shell:browserify'
     'coffee'
@@ -139,6 +145,9 @@ module.exports = (grunt) ->
     'concat:sass'
     'compass'
     'copy:html'
-    'connect'
-    'watch'
+  ]
+
+  grunt.registerTask 'deploy', [
+    'build'
+    'aws_s3'
   ]

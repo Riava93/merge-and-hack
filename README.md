@@ -1,13 +1,23 @@
 # HTML5 Game Jam Template!
 
 A basic template for HTML5 Games that can run without browser dependency using node.js
+This is intended for games that can run without a server side but leverages node to help you run faster game simulations
+than you would probably get by trying to do everything in the browser with user interactions
 
 ## Getting Started
 
-1. `$ npm install`
-2. `$ grunt`
+1. You should have the popular node.js tools `npm, bower and grunt` installed
+2. `$ npm install`
+3. `$ grunt`
 
 The browser should automatically launch when everything is built and monitor your changes with livereload
+
+This template is also `bower.json` ready and has included the utility library `lodash` as a generic example
+
+## Deploying
+
+You can run `grunt deploy` to send your `out` folder directly to Amazon S3 for an instant hosting solution
+However, you will need to make a copy of `config.sample.json` to `config.json` and fill out your personal credentials
 
 ### Preprocessors used
 - Coffeescript
@@ -15,6 +25,7 @@ The browser should automatically launch when everything is built and monitor you
 - SASS
 	Because curly braces and semicolons are just in your way
 
+## More info
 
 ##### See the example output in your browser console
 ```

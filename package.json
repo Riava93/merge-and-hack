@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.coffee",
   "scripts": {
+    "postinstall": "bower install",
     "start": "coffee simulator.coffee",
     "test": "echo \"Error: no test specified\" && exit 1",
     "browserify": "node_modules/.bin/browserify -t coffeeify game/Game.coffee -o .tmp/game.js --standalone Game --extension='.coffee'"
