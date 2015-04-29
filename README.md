@@ -1,6 +1,8 @@
 # HTML5 Game Jam Template!
-This is intended for games that can run without a server side but leverages node to help you run faster game simulations
+This is intended for games that can run without a server side but leverages node.js to help you run faster game simulations
 than you would probably get by trying to do everything in the browser with user interactions
+
+**NOTE**: This template uses Coffeescript and SASS preprocessors
 
 ## Getting Started
 
@@ -8,29 +10,24 @@ than you would probably get by trying to do everything in the browser with user 
 2. `$ npm install`
 3. `$ grunt`
 
+The browser should automatically launch when everything is built and monitor your changes with livereload
+
+## Developing your game
+
 #### Put your browser dependent logic in `app/`
 #### Put your game specific logic in `game/`
 
-The browser should automatically launch when everything is built and monitor your changes with livereload
+## In the browser
 
-This template is also `bower.json` ready and has included the utility library `lodash` as a generic example
-
-
-##### See the example output in your browser console
-```
-  // from app.js
-  var game = new Game();
-  game.start();
-```
 `Game` has been exposed as a global variable in the browser
+ See the example output in your browser console after building by opening `out/index.html`
 
-##### Or to run the game from your command line
-```
-  $ npm start
-  // This will run the simulator.coffee file in the root of the project
-```
+This template is also `bower.json` ready and has included the utility library `lodash` as a generic example of how you can add 3rd party libraries for your browser code
 
-##### Both should yield the same output and allow you to work with your game logic with or without a browser which maybe be easier for running fast simulations
+## In the command line
+```
+  $ npm start // This will run the simulator.coffee file in the root of the project
+```
 
 ## Deploying
 
@@ -39,8 +36,6 @@ However, you will need to make a copy of `config.sample.json` to `config.json` a
 
 ## Other info
 ### Preprocessors used
-- Coffeescript
-	Because subclassing is hella handy for game development and semicolons are just in your way
-- SASS
-	Because curly braces and semicolons are just in your way
+- **Coffeescript** - Because subclassing is hella handy for game development and semicolons are just in your way
+- **SASS** - Because curly braces and semicolons are just in your way
 
