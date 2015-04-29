@@ -1,0 +1,40 @@
+{
+  "name": "mergers-and-hacquisitions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.coffee",
+  "scripts": {
+    "start": "coffee simulator.coffee",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browserify": "node_modules/.bin/browserify -t coffeeify game/Game.coffee -o .tmp/game.js --standalone Game --extension='.coffee'"
+  },
+  "homepage": "https://github.com/bitwit/merge-and-hack",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bitwit/merge-and-hack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitwit/merge-and-hack/issues"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "coffee-script": "^1.9.2",
+    "coffeeify": "^1.1.0",
+    "grunt": "^0.4.1",
+    "grunt-aws-s3": "^0.12.3",
+    "grunt-bower-concat": "~0.2.4",
+    "grunt-concurrent": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^1.1.2",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.1"
+  }
+}
