@@ -1,2 +1,3 @@
 module.exports =
-	Subsidiary: require './subsidiaries/Subsidiary'
+	events: require './events'
+	subsidiaries: require './subsidiaries'

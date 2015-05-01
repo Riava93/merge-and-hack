@@ -1,14 +1,87 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Game Jam Game</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="/app.css">
-  </head>
-  <body>
+	<head>
+		<meta charset="utf-8">
+		<title>Game Jam Game</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="/app.css">
+	</head>
+	<body ng-app="mergeAndHack">
+		<div ng-controller="GameController">
+			<div class="info-box">
+				<h3>Game Info</h3>
+				Current player: {{game.board.players[game.board.turn].name}}
+				<br />
+				Current State: {{game.board.state.toString()}}
+			</div>
 
-    <script src="/app.js"></script>
-  </body>
+			<h3>Corporations</h3>
+			<div class="mega-corporation" ng-repeat="corp in game.board.players">
+				{{corp.name}}
+				<dl>
+					<dt>Cash</dt>
+					<dd>{{corp.cash}}</dd>
+					<dt>Stats</dt>
+					<dd>
+						<dl>
+							<dt>Product</dt>
+							<dd>{{corp.stats.product}}</dd>
+							<dt>Security</dt>
+							<dd>{{corp.stats.security}}</dd>
+							<dt>Espionage</dt>
+							<dd>{{corp.stats.espionage}}</dd>
+						</dl>
+					</dd>
+					<dt>Subsidiaries</dt>
+					<dd>
+						<ul>
+							<li ng-repeat="subsidiary in corp.subsidiaries">{{subsidiary.name}}</li>
+						</ul>
+					</dd>
+					<dt>Events</dt>
+					<dd>
+						<ul>
+							<li ng-repeat="event in corp.events">{{event.name}}</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+
+			<div class="event-card-piles" ng-if="game.board.state.current === game.board.state.TURN_START">
+				<h3>Card Piles</h3>
+				<div class="card-group" ng-repeat="cardGroup in game.board.cardGroups">
+					{{cardGroup.name}}
+					<dl>
+						<dt>Face Down Cards</dt>
+						<dd>Count: {{cardGroup.newStack.length}}</dd>
+						<dt>In Play Cards</dt>
+						<dd>
+							<div>Count: {{cardGroup.inPlayStack.length}}</div>
+							<div>Name: {{cardGroup.inPlayStack[0].name}}</div>
+						</dd>
+						<dt>Discarded Cards</dt>
+						<dd>Count: {{cardGroup.discardStack.length}}</dd>
+					</dl>
+					<button ng-click="selectEventCard($index)">Select this card</button>
+				</div>
+			</div>
+
+			<div class="merge-or-hack" ng-if="game.board.state.current === game.board.state.TURN_DECIDING_MERGE_OR_HACK">
+				<h3>Merge or hack?</h3>
+				<button ng-click="chooseMerge()">Merge</button>
+				<button ng-click="chooseHack()">Hack</button>
+			</div>
+
+			<div class="merger-option" ng-if="game.board.state.current === game.board.state.TURN_MERGING">
+				<h3>Confirm merger</h3>
+				<div class="subsidiary-option">
+					Subsidiary: {{game.board.innovationPool.inPlayStack[0].name}}
+				</div>
+				<button ng-click="confirmMerger(true)">YES</button>
+				<button ng-click="confirmMerger(false)">NOPE</button>
+			</div>
+		</div>
+		<script src="/app.js"></script>
+	</body>
 </html>

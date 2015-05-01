@@ -10,8 +10,9 @@ class Card
 	constructor: (@id) ->
 		@name = @constructor.name
 		@stats = new GameStats
+		@ownerGrouping = null #a reference to the grouping that owns this card
 
-	tick: ->
-		console.log 'Card tick'
+	tick: (board) ->
+		console.log @name, 'tick'
 
 module.exports = Card
