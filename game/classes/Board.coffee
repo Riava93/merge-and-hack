@@ -120,7 +120,7 @@ class HackPuzzle
 
 	calculateProbability: ->
 		# (1 - (attackEsp / defendSec)) * 6 [randomly choose Math.ceil, or Math.floor]
-		@probability = (1 - @playerEspionage / @targetsSecurity)) * 6
+		@probability = (1 - @playerEspionage / @targetsSecurity) * 6
 		rand_num = Math.random()
 
 		if rand_num > 0.5
