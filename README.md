@@ -1,7 +1,9 @@
 # TODOs
 
-- corporation/subsidiary/event ticking
-- more cards for all types
 - AI for other corporations
-- Font Awesome
-- Angular animations
+- implement card types in game
+- Design for:
+	- start screen
+	- in game prompts
+	- help/info modal
+- Result feedback

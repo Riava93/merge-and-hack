@@ -65,8 +65,11 @@
 
 		<div class="merger-option modal" ng-if="game.board.state.current === game.board.state.TURN_MERGING">
 			<h3>Confirm merger</h3>
-			<div class="subsidiary-option">
-				Subsidiary: {{game.board.innovationPool.inPlayStack[0].name}}
+			<div class="subsidiary-option" ng-repeat="subsidiary in game.board.innovationPool.inPlayStack">
+				<i class="fa fa-{{subsidiary.icon}}"></i>
+				<div class="subsidiary-info">
+					<span>{{subsidiary.name}}</span>
+				</div>
 			</div>
 			<button ng-click="confirmMerger(true)">YES</button>
 			<button ng-click="confirmMerger(false)">NOPE</button>
