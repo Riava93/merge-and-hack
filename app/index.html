@@ -17,63 +17,38 @@
 		</div>
 
 		<div class="mega-corporation player-{{$index + 1}}" ng-repeat="corp in game.board.players">
-			{{corp.name}}
+			<h3>{{corp.name}}</h3>
 			<dl>
-				<dt>Cash</dt>
+				<dt><i class="fa fa-money"></i></dt>
 				<dd>{{corp.cash}}</dd>
-				<dt>Stats</dt>
 				<dd>
 					<dl>
-						<dt>Product</dt>
+						<dt><i class="fa fa-bar-chart"></i></dt>
 						<dd>{{corp.stats.product}}</dd>
-						<dt>Security</dt>
+						<dt><i class="fa fa-shield"></i></dt>
 						<dd>{{corp.stats.security}}</dd>
-						<dt>Espionage</dt>
+						<dt><i class="fa fa-user-secret"></i></dt>
 						<dd>{{corp.stats.espionage}}</dd>
 					</dl>
 				</dd>
-				<dt>Subsidiaries</dt>
-				<dd>
-					<ul>
-						<li ng-repeat="subsidiary in corp.subsidiaries">{{subsidiary.name}}</li>
-					</ul>
-				</dd>
-				<dt>Events</dt>
-				<dd>
-					<ul>
-						<li ng-repeat="event in corp.events">{{event.name}}</li>
-					</ul>
-				</dd>
 			</dl>
+			<h5>Subsidiaries</h5>
+			<ul>
+				<li ng-repeat="subsidiary in corp.subsidiaries">{{subsidiary.name}}</li>
+			</ul>
 		</div>
 
 		<div class="event-card-piles">
 			<div class="card-group" ng-repeat="cardGroup in game.board.cardGroups">
-
 				<div class="card flipped-{{card.isFlipped}} retained-{{card.isRetained}} visible-{{card.isVisible}}" ng-repeat="card in cardGroup.allCards">
-					<div class="front face">
+					<div class="front face" ng-click="selectEventCard($parent.$index)">
 						<span>{{card.name}}</span>
-						<button ng-click="selectEventCard($parent.$index)">Select this card</button>
 					</div>
 					<div class="back face">
-						<span>Back Face</span>
+						<i class="fa fa-{{cardGroup.icon}}"></i>
+						<span>{{cardGroup.name}}</span>
 					</div>
 				</div>
-
-				<!--
-				{{cardGroup.name}}
-				<dl>
-					<dt>Face Down Cards</dt>
-					<dd>Count: {{cardGroup.newStack.length}}</dd>
-					<dt>In Play Cards</dt>
-					<dd>
-						<div>Count: {{cardGroup.inPlayStack.length}}</div>
-						<div>Name: {{cardGroup.inPlayStack[0].name}}</div>
-					</dd>
-					<dt>Discarded Cards</dt>
-					<dd>Count: {{cardGroup.discardStack.length}}</dd>
-				</dl>
-				 -->
 			</div>
 		</div>
 

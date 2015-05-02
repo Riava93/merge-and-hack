@@ -1,7 +1,7 @@
 cards = require '../cards'
 
 class CardGrouping
-	constructor: ->
+	constructor: (@icon) ->
 		@name = @constructor.name
 		@allCards = [] # a reference holder to all cards in this grouping, regardles of their state
 		@newStack = [] # the face down stack of cards
@@ -61,21 +61,24 @@ class CardGrouping
 
 class ProductCardGrouping extends CardGrouping
 	constructor: ->
-		super()
+		super 'bar-chart'
+		@name = 'Product'
 		@add new cards.events.product.ProductEvent 'a-product-event'
 		@add new cards.events.product.ProductEvent 'a-product-event'
 		@add new cards.events.product.ProductEvent 'a-product-event'
 
 class SecurityCardGrouping extends CardGrouping
 	constructor: ->
-		super()
+		super 'shield'
+		@name = 'Security'
 		@add new cards.events.security.HashedPasswords
 		@add new cards.events.security.InjectionPrevention
 		@add new cards.events.security.CrossOriginPolicy
 
 class EspionageCardGrouping extends CardGrouping
 	constructor: ->
-		super()
+		super 'user-secret'
+		@name = 'Espionage'
 		@add new cards.events.espionage.EspionageEvent 'a-espionage-event'
 		@add new cards.events.espionage.EspionageEvent 'a-espionage-event'
 		@add new cards.events.espionage.EspionageEvent 'a-espionage-event'
