@@ -4,6 +4,7 @@ class Subsidiary extends Card
 	constructor: (id, icon) ->
 		super id, icon
 		@value = 0
+		@trustLevel = 20  # Default starting trust level
 
 	tick: ->
 		super()
@@ -15,7 +16,7 @@ class SidekickSubsidiary extends Subsidiary
 		super 'sidekick', 'male'
 		@value = 10000000
 
-	bonusTick: (@event) ->
+	bonusTick: ->
 		super()
 		console.log 'Sidekick Ticked!'
 

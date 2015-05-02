@@ -10,11 +10,13 @@ class MegaCorporation extends Card
 			new subsidiaries.SidekickSubsidiary
 		] # subsidiary company cards
 		@events = [] # event cards
+		@totalTrust = 0
 
 	tick: (board) ->
 		console.log '-----------'
 		console.log @name, 'tick'
 		console.log '-----------'
+		@getInvestorTrust()
 		for subsidiary in @subsidiaries
 			subsidiary.tick()
 		for event, i in @events
@@ -22,6 +24,10 @@ class MegaCorporation extends Card
 			if event.shouldExpire()
 				event.ownerGrouping.discard event
 				@events.splice i, 1
+
+	getInvestorTrust: ->
+		for subsidiary in @subsidiaries
+			@totalTrust += subsidiary.trustLevel
 
 class SparkFresh extends MegaCorporation
 	constructor: ->

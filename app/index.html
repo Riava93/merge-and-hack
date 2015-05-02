@@ -74,7 +74,7 @@
 
 		<div class="hack-option modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING_SELECT">
 			<h3>Who should we hack?</h3>
-			<button class="hackable-corporation" ng-repeat="corp in game.board.players" ng-click="confirmHack(corp)">{{corp.name}}</button>
+			<button class="hackable-corporation" ng-if="corp !== game.board.getCurrentPlayer()" ng-repeat="corp in game.board.players" ng-click="confirmHack(corp)">{{corp.name}}</button>
 		</div>
 
 		<div class="hack-puzzle modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING">

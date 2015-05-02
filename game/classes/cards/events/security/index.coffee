@@ -9,6 +9,9 @@ class HashedPasswords extends SecurityEvent
 		super()
 		@stats.security = 3
 
+	tick: ->
+		console.log 'Hashed Passwords tick activated'
+
 class InjectionPrevention extends SecurityEvent
 	constructor: ->
 		super()

@@ -56,13 +56,9 @@ class Board
 
 		console.log 'next turn for player', @players[@turn]
 
-	triggerTick: (@event, @grouping) ->
-		# check if player has subsidiaries
-		if @players[@turn].subsidiaries.length > 0
-			# Tick all cards based on event
-			@players[@turn].tick @
-		else
-			console.log 'Player has no subsidiaries yet, nothing to tick'
+	triggerTick: ->
+		for corp in @players
+			corp.tick @
 
 	endTurn: ->
 		# TODO: tick all corporations
@@ -82,6 +78,7 @@ class Board
 				@cardGroups[i].clear()
 		currentCorp.events.push eventCard
 		@state.current = @state.TURN_DECIDING_MERGE_OR_HACK
+		@triggerTick()
 
 	selectMerge: ->
 		@state.current = @state.TURN_MERGING
@@ -117,11 +114,11 @@ class Board
 			if @hackPuzzle.hackSuccessful
 				@state.current = @state.TURN_RESULT
 				@triggerTick()
-				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', { subsidiaries: 'Gained 1 Security Subsidiary' }
+				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', @hackPuzzle.attacker, @hackPuzzle.defender
 			else
 				@state.current = @state.TURN_RESULT
 				@triggerTick()
-				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', { funds: 'You\'ve lost 1 bagillion dollars' }
+				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', @hackPuzzle.attacker, @hackPuzzle.defender
 		else
 			console.log 'continuing the hack'
 
@@ -134,9 +131,9 @@ class Board
 
 class HackPuzzle
 
-	constructor: (attacker, defender, @totalTurns = 3) ->
-		@playerEspionage = attacker.stats.espionage
-		@targetsSecurity = defender.stats.security
+	constructor: (@attacker, @defender, @totalTurns = 3) ->
+		@playerEspionage = @attacker.stats.espionage
+		@targetsSecurity = @defender.stats.security
 		@cells_grid = [[], [], []]
 		@buildGrid()
 		@calculateProbability()
@@ -174,27 +171,27 @@ class HackPuzzle
 		@hackSuccessful = false
 
 		# Check all rows...
-		@hackSuccessful = true if (@cells_grid[0][0].cellValue + @cells_grid[1][0].cellValue + @cells_grid[2][0].cellValue) is 3
-		@hackSuccessful = true if (@cells_grid[0][1].cellValue + @cells_grid[1][1].cellValue + @cells_grid[2][1].cellValue) is 3
-		@hackSuccessful = true if (@cells_grid[0][2].cellValue + @cells_grid[1][2].cellValue + @cells_grid[2][2].cellValue) is 3
+		@hackSuccessful = true if (@cells_grid[0][0].value + @cells_grid[1][0].value + @cells_grid[2][0].value) is 3
+		@hackSuccessful = true if (@cells_grid[0][1].value + @cells_grid[1][1].value + @cells_grid[2][1].value) is 3
+		@hackSuccessful = true if (@cells_grid[0][2].value + @cells_grid[1][2].value + @cells_grid[2][2].value) is 3
 
 		# Check all columns...
-		@hackSuccessful = true if (@cells_grid[0][0].cellValue + @cells_grid[0][1].cellValue + @cells_grid[0][2].cellValue) is 3
-		@hackSuccessful = true if (@cells_grid[1][0].cellValue + @cells_grid[1][1].cellValue + @cells_grid[1][2].cellValue) is 3
-		@hackSuccessful = true if (@cells_grid[2][0].cellValue + @cells_grid[2][1].cellValue + @cells_grid[2][2].cellValue) is 3
+		@hackSuccessful = true if (@cells_grid[0][0].value + @cells_grid[0][1].value + @cells_grid[0][2].value) is 3
+		@hackSuccessful = true if (@cells_grid[1][0].value + @cells_grid[1][1].value + @cells_grid[1][2].value) is 3
+		@hackSuccessful = true if (@cells_grid[2][0].value + @cells_grid[2][1].value + @cells_grid[2][2].value) is 3
 
 		# Check L2R Diagonal for win
-		@hackSuccessful = true if (@cells_grid[0][2].cellValue + @cells_grid[1][1].cellValue + @cells_grid[2][0].cellValue) is 3
+		@hackSuccessful = true if (@cells_grid[0][2].value + @cells_grid[1][1].value + @cells_grid[2][0].value) is 3
 		# Check R2L Diagonal for win
-		@hackSuccessful = true if (@cells_grid[2][2].cellValue + @cells_grid[1][1].cellValue + @cells_grid[0][0].cellValue) is 3
+		@hackSuccessful = true if (@cells_grid[2][2].value + @cells_grid[1][1].value + @cells_grid[0][0].value) is 3
 
 	activateCell: (xCell, yCell) ->
 		@cells_grid[xCell][yCell].activate()
 		@checkForWin()
 		@totalTurns--
-		console.log 'turns remaining', @totalTurns
-		console.log 'successful?', @hackSuccessful
-		console.log 'over?', @hackSuccessful isnt true and @outOfTurns()
+#		console.log 'turns remaining', @totalTurns
+#		console.log 'successful?', @hackSuccessful
+#		console.log 'over?', @hackSuccessful isnt true and @outOfTurns()
 
 		if @hackSuccessful is true
 			return yes
@@ -235,14 +232,30 @@ class Cell
 
 class Results
 
-	constructor: (@type, @result, @details) ->
+	constructor: (@type, @result, @details, @attacker, @defender) ->
 		if @result
-			@rewards @details
+			@stealSubsidiary()
 		else
-			@consequences @details
+			@failConsequence()
 
-	rewards: (@rewards...) ->
+	stealSubsidiary: ->
+		if @defender.subsidiaries.length > 0
+			reward = @defender.subsidiaries.shift()
+			@attacker.subsidiaries.push reward
+			console.log "Awared subsidiary: #{reward.name} => #{@attacker.name}"
+		else if @defender.cash > 0
+			@attacker.cash += 150
+			@defender.cash -= 150
+			console.log "#{@attacker.name} stole $150.00 from #{@defender.name}"
+		else
+			console.log "#{@defender.name} has absolutely nothing to take! Quit picking on them!"
 
-	consequences: (@conseq...) ->
+
+	failConsequence: ->
+		if @attacker.cash > 0
+			@attacker.cash -= 100
+		else
+			console.log "#{@attacker.name} has no funds to lose!"
+
 
 module.exports = Board
