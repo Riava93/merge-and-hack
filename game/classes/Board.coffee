@@ -10,7 +10,7 @@ class GameState
 		'TURN_MERGING' # drawing from the innovation pool
 		'TURN_HACKING_SELECT' # Select a player to hack
 		'TURN_HACKING' # attempting to hack for a subsidiary
-		'TURN_HACKING_RESULT'  # See Results of the hack
+		'TURN_RESULT'  # See Results of the hack
 		'GAME_OVER' # the very end of the game
 	]
 	constructor: ->
@@ -106,8 +106,18 @@ class Board
 	hackPuzzleCellClick: (x, y) ->
 		result = @hackPuzzle.activateCell(x, y)
 		if result
-			@state.TURN_HACKING_RESULT
+			@state.current = @state.TURN_RESULT
+			@outcome = new Results 'hacquisition', result, 'You\'ve successfully hacked your target', { subsidiaries: 'Gained 1 Security Subsidiary' }
+		else
+			@state.current = @state.TURN_RESULT
+			@outcome = new Results 'hacquisition', result 'You\'ve failed to successfully hack your target', { funds: 'You\'ve lost 1 bagillion dollars' }
 
+
+	hackPuzzleBail: ->
+		result = @hackPuzzle.bailOut()
+		if result
+			@state.current = @state.TURN_RESULT
+			@outcome = new Results 'hacquisition', !result, 'You bailed out of the hacquisition!'
 
 class HackPuzzle
 
@@ -171,14 +181,18 @@ class HackPuzzle
 
 		if @hackSuccessful = true
 			yes
-		else
+		else if @hackSuccessful isnt true and @outOfTurns()
 			no
+
 		@totalTurns--
 
 	# check if out of turns
 	outOfTurns: ->
 		if @totalTurns = 0
-			@hackSuccessful = false
+			yes
+
+	bailOut: ->
+		yes
 
 class Cell
 
@@ -202,5 +216,17 @@ class Cell
 		else
 			@value = 0
 
+
+class Results
+
+	constructor: (@type, @result, @details) ->
+		if @result
+			@rewards @details
+		else
+			@consequences @details
+
+	rewards: (@rewards...) ->
+
+	consequences: (@conseq...) ->
 
 module.exports = Board
