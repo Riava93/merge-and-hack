@@ -43,17 +43,19 @@ class CardGrouping
 class ProductCardGrouping extends CardGrouping
 	constructor: ->
 		super()
-		@add new cards.events.ProductEvent 'a-product-event'
+		@add new cards.events.product.ProductEvent 'a-product-event'
 
 class SecurityCardGrouping extends CardGrouping
 	constructor: ->
 		super()
-		@add new cards.events.SecurityEvent 'a-security-event'
+		@add new cards.events.security.HashedPasswords
+		@add new cards.events.security.InjectionPrevention
+		@add new cards.events.security.CrossOriginPolicy
 
 class EspionageCardGrouping extends CardGrouping
 	constructor: ->
 		super()
-		@add new cards.events.EspionageEvent 'a-espionage-event'
+		@add new cards.events.espionage.EspionageEvent 'a-espionage-event'
 
 class InnovationPoolCardGrouping extends CardGrouping
 	constructor: ->

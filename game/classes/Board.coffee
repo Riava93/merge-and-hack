@@ -5,7 +5,7 @@ class GameState
 	states: [
 		'GAME_START' # introduction screen
 		'GAME_INFO' # more explanation, help screen before game start, possibly
-		'TURN_START' # beginning of a turn, player picks a card
+		'TURN_START' # beginning of a turn, player picks a event card
 		'TURN_DECIDING_MERGE_OR_HACK' # player decides whether to acquire a sub with money or attempt to hack for one
 		'TURN_MERGING' # drawing from the innovation pool
 		'TURN_HACKING_SELECT' # Select a player to hack
