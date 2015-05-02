@@ -7,7 +7,7 @@ class MegaCorporation extends Card
 		super id, icon
 		@cash = 0
 		@subsidiaries = [
-			new subsidiaries.SidekickSubsidiary
+			new subsidiaries.Sidekick
 		] # subsidiary company cards
 		@events = [] # event cards
 		@totalTrust = 0
