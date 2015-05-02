@@ -1,10 +1,14 @@
 Card = require '../Card'
 
+subsidiaries = require '../subsidiaries'
+
 class MegaCorporation extends Card
-	constructor: (@id) ->
-		super @id
+	constructor: (id, icon) ->
+		super id, icon
 		@cash = 0
-		@subsidiaries = [] # subsidiary company cards
+		@subsidiaries = [
+			new subsidiaries.SidekickSubsidiary
+		] # subsidiary company cards
 		@events = [] # event cards
 
 	tick: (board) ->
@@ -21,15 +25,15 @@ class MegaCorporation extends Card
 
 class SparkFresh extends MegaCorporation
 	constructor: ->
-		super 'SparkFresh Inc.'
+		super 'SparkFresh Inc.', 'bomb'
 
 class SomethingCorp extends MegaCorporation
 	constructor: ->
-		super 'Something Inc.'
+		super 'Something Inc.', 'bomb'
 
 class OtherCorp extends MegaCorporation
 	constructor: ->
-		super 'Other Stuff Inc.'
+		super 'Other Stuff Inc.', 'bomb'
 
 module.exports =
 	SparkFresh: SparkFresh,

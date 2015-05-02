@@ -1,8 +1,8 @@
 Card = require '../Card'
 
 class Event extends Card
-	constructor: (@id) ->
-		super @id
+	constructor: (id, icon) ->
+		super id, icon
 		@value = 0
 		@expiry = -1
 

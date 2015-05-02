@@ -25,6 +25,7 @@ body
   height: 100%
 
 h1, h2, h3, h4, h5, h6
+  clear: both
   font:
     weight: 500
   text-align: center
@@ -40,7 +41,6 @@ h2
 h3
   margin: 10/$em 0
   font-size: 24/$em
-  clear: both
 
 .info-box
   position: absolute
@@ -52,6 +52,7 @@ h3
 .mega-corporation
   border: 2/$em  solid #CCC
   position: absolute
+  z-index: 50
   width: 20%
 
   dd
@@ -72,6 +73,22 @@ h3
   &.player-3
     top: 0
     right: 0
+
+.mega-corporation
+  ul.subsidiaries
+    list-style-type: none
+  li.subsidiary
+    float: left
+    border: 1/$em solid #888
+    width: 40/$em
+    height: 40/$em
+
+    &:hover, &:active
+      .subsidiary-info
+        display: block
+
+    .subsidiary-info
+      display: none
 
 .event-card-piles
   position: absolute

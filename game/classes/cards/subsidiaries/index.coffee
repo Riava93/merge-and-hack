@@ -1,8 +1,8 @@
 Card = require '../Card'
 
 class Subsidiary extends Card
-	constructor: (@id) ->
-		super @id
+	constructor: (id, icon) ->
+		super id, icon
 		@value = 0
 
 	tick: ->
@@ -12,7 +12,7 @@ class Subsidiary extends Card
 
 class SidekickSubsidiary extends Subsidiary
 	constructor: ->
-		super 'sidekick'
+		super 'sidekick', 'male'
 		@value = 10000000
 
 	bonusTick: (@event) ->

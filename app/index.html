@@ -33,8 +33,13 @@
 				</dd>
 			</dl>
 			<h5>Subsidiaries</h5>
-			<ul>
-				<li ng-repeat="subsidiary in corp.subsidiaries">{{subsidiary.name}}</li>
+			<ul class="subsidiaries">
+				<li class="subsidiary" ng-repeat="subsidiary in corp.subsidiaries">
+					<i class="fa fa-{{subsidiary.icon}}"></i>
+					<div class="subsidiary-info">
+						<span>{{subsidiary.id}}</span>
+					</div>
+				</li>
 			</ul>
 		</div>
 
