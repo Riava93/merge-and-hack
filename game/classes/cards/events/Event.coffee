@@ -5,11 +5,21 @@ class Event extends Card
 		super id, icon
 		@value = 0
 		@expiry = -1
+		@hasMerged = false
 
-	tick: (@event) ->
+	tick: ->
 		super()
 		if @expiry isnt -1
 			@expiry--
+
+	merge: (currentPlayer) ->
+		currentPlayer?.stats.espionage += @stats.espionage if @stats.espionage?
+		currentPlayer?.stats.security += @stats.security if @stats.security?
+		currentPlayer?.stats.product += @stats.product if @stats.product?
+		@hasMerged = true
+
+	resetBonus: ->
+
 
 	shouldExpire: ->
 		return @expiry is 0

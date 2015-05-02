@@ -109,6 +109,8 @@ module.exports = (grunt) ->
     shell:
       browserify:
         command: 'npm run browserify'
+      simulate:
+        command: 'npm start'
 
     watch:
       app:
@@ -125,7 +127,7 @@ module.exports = (grunt) ->
 
       game:
         files: ['<%= dir.game %>/**/**.coffee'],
-        tasks: ['shell:browserify', 'concat:js'],
+        tasks: ['shell:simulate', 'shell:browserify', 'concat:js'],
         options:
           livereload: '<%= connect.options.livereload %>'
 

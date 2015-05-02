@@ -19,8 +19,10 @@ class Card
 		@isVisible = yes # is showing in the view?
 		@isRetained = no # is contained in a corporation?
 
-	tick: (board, @event) ->
+	tick: (board) ->
 		console.log @name, 'tick'
+
+	onHack: ->
 
 	bonusTick: ->  # For subsidiary bonus perks on tick
 

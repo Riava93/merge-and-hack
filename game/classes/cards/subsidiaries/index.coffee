@@ -15,9 +15,11 @@ class SidekickSubsidiary extends Subsidiary
 	constructor: ->
 		super 'sidekick', 'male'
 		@value = 10000000
+		@stats.security = 3
+		@stats.product = 4
+		@stats.espionage = 3
 
 	bonusTick: ->
-		super()
 		console.log 'Sidekick Ticked!'
 
 
