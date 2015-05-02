@@ -56,6 +56,14 @@ class Board
 
 		console.log 'next turn for player', @players[@turn]
 
+	triggerTick: (@event, @grouping) ->
+		# check if player has subsidiaries
+		if @players[@turn].subsidiaries.length > 0
+			# Tick all cards based on event
+			@players[@turn].tick @
+		else
+			console.log 'Player has no subsidiaries yet, nothing to tick'
+
 	endTurn: ->
 		# TODO: tick all corporations
 		for corp in @players
@@ -99,7 +107,6 @@ class Board
 		attackingPlayer = @getCurrentPlayer()
 		@state.current = @state.TURN_HACKING unless target is attackingPlayer
 		@hackPuzzle = new HackPuzzle attackingPlayer, target
-		#TODO: perform hacquisition and report results
 
 		#@endTurn()
 
@@ -109,9 +116,11 @@ class Board
 			console.log 'the hack is over'
 			if @hackPuzzle.hackSuccessful
 				@state.current = @state.TURN_RESULT
+				@triggerTick()
 				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', { subsidiaries: 'Gained 1 Security Subsidiary' }
 			else
 				@state.current = @state.TURN_RESULT
+				@triggerTick()
 				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', { funds: 'You\'ve lost 1 bagillion dollars' }
 		else
 			console.log 'continuing the hack'
@@ -120,6 +129,7 @@ class Board
 		result = @hackPuzzle.bailOut()
 		if result
 			@state.current = @state.TURN_RESULT
+			@triggerTick()
 			@outcome = new Results 'hacquisition', !result, 'You bailed out of the hacquisition!'
 
 class HackPuzzle

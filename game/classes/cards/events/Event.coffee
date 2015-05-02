@@ -6,7 +6,7 @@ class Event extends Card
 		@value = 0
 		@expiry = -1
 
-	tick: ->
+	tick: (@event) ->
 		super()
 		if @expiry isnt -1
 			@expiry--

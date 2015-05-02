@@ -12,7 +12,10 @@ class Card
 		@stats = new GameStats
 		@ownerGrouping = null #a reference to the grouping that owns this card
 
-	tick: (board) ->
+	tick: (board, @event) ->
 		console.log @name, 'tick'
+
+	bonusTick: ->  # For subsidiary bonus perks on tick
+
 
 module.exports = Card
