@@ -42,6 +42,11 @@ module.exports = (grunt) ->
         exclude: [],
         dest: '<%= dir.tmp %>/bower.js'
 
+   uglify:
+      bower:
+        files:
+          '<%= dir.tmp %>/bower.js': ['<%= dir.tmp %>/bower.js']
+
     connect:
       options:
         port: 9000,
@@ -139,6 +144,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', [
     'bower_concat'
+    'uglify:bower'
     'shell:browserify'
     'coffee'
     'concat:js'

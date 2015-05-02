@@ -1,4 +1,4 @@
-angular.module 'mergeAndHack', []
+angular.module 'mergeAndHack', ['ngAnimate']
 
 	.controller 'GameController', ($scope, $window) ->
 		_theGame = new $window.Game

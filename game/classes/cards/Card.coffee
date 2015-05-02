@@ -10,7 +10,14 @@ class Card
 	constructor: (@id) ->
 		@name = @constructor.name
 		@stats = new GameStats
-		@ownerGrouping = null #a reference to the grouping that owns this card
+		@ownerGrouping = null # a reference to the grouping that owns this card
+
+		###
+		# Related to visual representation
+		###
+		@isFlipped = no # is face up?
+		@isVisible = yes # is showing in the view?
+		@isRetained = no # is contained in a corporation?
 
 	tick: (board, @event) ->
 		console.log @name, 'tick'

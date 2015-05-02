@@ -1,10 +1,136 @@
+@import 'compass'
+
+$font-size: 16
+
+$em: $font-size / 1em
+
+*
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+html
+  height: 100%
+  overflow: hidden
+
+body
+  font:
+    size: $font-size * 1px
+    family: Helvetica Neue, Helvetica, Arial, sans-serif
+    weight: 300
+  overflow: hidden
+  height: 100%
+
+h1, h2, h3, h4, h5, h6
+  font:
+    weight: 500
+  text-align: center
+
+h1
+  margin: 20/$em 0
+  font-size: 32/$em
+
+h2
+  margin: 20/$em 0
+  font-size: 28/$em
+
 h3
-        clear: both
+  margin: 10/$em 0
+  font-size: 24/$em
+  clear: both
+
+.info-box
+  position: absolute
+  bottom: 0
+  left: 0
+  border: 2/$em  solid #CCC
+  width: 20%
 
 .mega-corporation
-        border: 1px solid #CCC
-        float: left
+  border: 2/$em  solid #CCC
+  position: absolute
+  width: 20%
+
+  &.player-1
+    bottom: 0
+    margin-left: 40%
+
+  &.player-2
+    top: 0
+    left: 0
+
+  &.player-3
+    top: 0
+    right: 0
+
+.event-card-piles
+  position: absolute
+  top: 0
+  left: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 100%
 
 .card-group
-        border: 1px solid #CCC
-        float: left
+  position: relative
+  border: 1/$em solid #CCC
+  width: 150/$em
+  height: 200/$em
+
+div.card
+  margin: 5/$em
+  width: 136/$em
+  height: 190/$em
+  position: absolute
+  top: 0
+  left: 0
+  float: left
+  background-color: #ddd
+  -webkit-transform-style: preserve-3d
+  -webkit-transition: -webkit-transform 0.66s linear, top 0.66s linear, left 0.66s linear, opacity 0.66s linear
+
+  &.flipped-true
+    z-index: 100
+    -webkit-transform: rotatey(180deg)
+
+  &.visible-false
+    opacity: 0
+    top: -40/$em
+
+  &.retained-true
+    opacity: 0
+    top: 40/$em
+
+  &:active
+    opacity: 0.65
+  .face
+    -webkit-backface-visibility: hidden
+    //-webkit-border-radius: 4%
+    position: absolute
+    width: 100%
+    height: 100%
+    &.front
+      -webkit-transform: rotatey(180deg)
+      box-sizing: border-box
+    div.design
+      font-size: 50%
+      +border-radius(4/$em)
+
+.modal
+  position: relative
+  z-index: 200
+  width: 50%
+  margin: auto
+
+.hack-puzzle
+  .puzzle-cell
+    float: left
+    width: 30/$em
+    height: 30/$em
+  .puzzle-row
+    clear: both
