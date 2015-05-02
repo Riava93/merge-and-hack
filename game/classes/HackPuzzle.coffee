@@ -61,9 +61,6 @@ class HackPuzzle
 		@cells_grid[xCell][yCell].activate()
 		@checkForWin()
 		@totalTurns--
-#		console.log 'turns remaining', @totalTurns
-#		console.log 'successful?', @hackSuccessful
-#		console.log 'over?', @hackSuccessful isnt true and @outOfTurns()
 
 		if @hackSuccessful is true
 			return yes

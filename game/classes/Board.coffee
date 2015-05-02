@@ -45,8 +45,10 @@ class Board
 
 		@innovationPool = new cardGroupings.InnovationPoolCardGrouping
 
+		# shuffle all the card groups
 		for group in @cardGroups
 			group.shuffle()
+		@innovationPool.shuffle()
 
 	chooseCorporation: (corp) ->
 		@players.splice @players.indexOf(corp), 1
@@ -57,14 +59,12 @@ class Board
 
 	nextTurn: ->
 		@state.current = @state.TURN_START
-		if @turn is -1
-			for corp, index in @players
-				if corp.isHuman
-					@turn = index
-		else
-			@turn++
+		@turn++
 		if @turn >= @players.length
 			@turn = 0
+
+		if @turn > 0 # this is an AI player
+			console.log 'do AI logic here...'
 
 		for group in @cardGroups
 			group.draw()
@@ -100,6 +100,7 @@ class Board
 
 	selectCard: (groupIndex, index) ->
 		currentCorp = @players[@turn]
+		console.log 'corp', currentCorp, @players, @turn
 		for group, i in @cardGroups
 			if i is groupIndex
 				eventCard = @cardGroups[groupIndex].select index
