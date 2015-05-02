@@ -23,3 +23,6 @@ angular.module 'mergeAndHack', []
 
 		$scope.revealPuzzleCell = (x, y) ->
 			_theGame.board.hackPuzzleCellClick x, y
+
+		$scope.confirmResults = ->
+			_theGame.board.endTurn()

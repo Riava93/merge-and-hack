@@ -96,6 +96,11 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="turn-results" ng-if="game.board.state.current === game.board.state.TURN_RESULT">
+				<h3>Results:</h3>
+				<button ng-click="confirmResults()">OK</button>
+			</div>
 		</div>
 		<script src="/app.js"></script>
 	</body>

@@ -104,14 +104,17 @@ class Board
 		#@endTurn()
 
 	hackPuzzleCellClick: (x, y) ->
-		result = @hackPuzzle.activateCell(x, y)
-		if result
-			@state.current = @state.TURN_RESULT
-			@outcome = new Results 'hacquisition', result, 'You\'ve successfully hacked your target', { subsidiaries: 'Gained 1 Security Subsidiary' }
+		isHackOver = @hackPuzzle.activateCell(x, y)
+		if isHackOver
+			console.log 'the hack is over'
+			if @hackPuzzle.hackSuccessful
+				@state.current = @state.TURN_RESULT
+				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', { subsidiaries: 'Gained 1 Security Subsidiary' }
+			else
+				@state.current = @state.TURN_RESULT
+				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', { funds: 'You\'ve lost 1 bagillion dollars' }
 		else
-			@state.current = @state.TURN_RESULT
-			@outcome = new Results 'hacquisition', result 'You\'ve failed to successfully hack your target', { funds: 'You\'ve lost 1 bagillion dollars' }
-
+			console.log 'continuing the hack'
 
 	hackPuzzleBail: ->
 		result = @hackPuzzle.bailOut()
@@ -122,8 +125,8 @@ class Board
 class HackPuzzle
 
 	constructor: (attacker, defender, @totalTurns = 3) ->
-		@playerEspionage = attacker.espionage
-		@targetsSecurity = defender.security
+		@playerEspionage = attacker.stats.espionage
+		@targetsSecurity = defender.stats.security
 		@cells_grid = [[], [], []]
 		@buildGrid()
 		@calculateProbability()
@@ -178,18 +181,21 @@ class HackPuzzle
 	activateCell: (xCell, yCell) ->
 		@cells_grid[xCell][yCell].activate()
 		@checkForWin()
-
-		if @hackSuccessful = true
-			yes
-		else if @hackSuccessful isnt true and @outOfTurns()
-			no
-
 		@totalTurns--
+		console.log 'turns remaining', @totalTurns
+		console.log 'successful?', @hackSuccessful
+		console.log 'over?', @hackSuccessful isnt true and @outOfTurns()
+
+		if @hackSuccessful is true
+			return yes
+		else if @hackSuccessful isnt true and @outOfTurns()
+			return yes
+
+		return no
 
 	# check if out of turns
 	outOfTurns: ->
-		if @totalTurns = 0
-			yes
+		@totalTurns is 0
 
 	bailOut: ->
 		yes
