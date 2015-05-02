@@ -15,5 +15,11 @@ angular.module 'mergeAndHack', []
 			_theGame.board.confirmMerger shouldMerge
 
 		$scope.chooseHack = ->
-			console.log 'do a hack'
+			_theGame.board.selectHack()
 
+		$scope.confirmHack = (target) ->
+			console.log 'confirming hack'
+			_theGame.board.confirmHack target
+
+		$scope.revealPuzzleCell = (x, y) ->
+			_theGame.board.hackPuzzleCellClick x, y

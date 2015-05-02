@@ -81,6 +81,21 @@
 				<button ng-click="confirmMerger(true)">YES</button>
 				<button ng-click="confirmMerger(false)">NOPE</button>
 			</div>
+
+			<div class="hack-option" ng-if="game.board.state.current === game.board.state.TURN_HACKING_SELECT">
+				<h3>Who should we hack?</h3>
+				<button class="hackable-corporation" ng-repeat="corp in game.board.players" ng-click="confirmHack(corp)">{{corp.name}}</button>
+			</div>
+
+			<div class="hack-puzzle" ng-if="game.board.state.current === game.board.state.TURN_HACKING">
+				<h3>Hack your opponent</h3>
+				<div ng-repeat="row in game.board.hackPuzzle.cells_grid">
+					<div ng-repeat="cell in row">
+						<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">?</button>
+						<span ng-if="cell.isRevealed">{{cell.value}}</span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="/app.js"></script>
 	</body>

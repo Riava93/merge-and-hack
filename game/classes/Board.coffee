@@ -63,7 +63,7 @@ class Board
 		@nextTurn()
 
 	getCurrentPlayer: ->
-		@player[@turn]
+		@players[@turn]
 
 	selectCard: (groupIndex, index) ->
 		currentCorp = @players[@turn]
@@ -97,7 +97,7 @@ class Board
 		# Give selection for players
 		# Return selected player as target
 		attackingPlayer = @getCurrentPlayer()
-		@state.TURN_HACKING unless target is attackingPlayer
+		@state.current = @state.TURN_HACKING unless target is attackingPlayer
 		@hackPuzzle = new HackPuzzle attackingPlayer, target
 		#TODO: perform hacquisition and report results
 
@@ -114,13 +114,14 @@ class HackPuzzle
 	constructor: (attacker, defender, @totalTurns = 3) ->
 		@playerEspionage = attacker.espionage
 		@targetsSecurity = defender.security
-		@cells_grid = new Array(3)
-		for cell in @cells_grid
-			cell = new Array(3)
+		@cells_grid = [[], [], []]
+		@buildGrid()
+		@calculateProbability()
+		@populateIceNodes()
 
 	calculateProbability: ->
 		# (1 - (attackEsp / defendSec)) * 6 [randomly choose Math.ceil, or Math.floor]
-		@probability = (1 - @playerEspionage / @targetsSecurity) * 6
+		@probability = ((1 - @playerEspionage / @targetsSecurity) * 6 || 1)
 		rand_num = Math.random()
 
 		if rand_num > 0.5
@@ -128,18 +129,22 @@ class HackPuzzle
 		else
 			@probability = Math.floor(@probability)
 
+		console.log 'probability', @probability
+
 	buildGrid: ->
 		#  Instantiate a new cell in the grid
-		for xCell in @cells_grid
-			for yCell in @cells_grid[xCell]
-				@cells_grid[xCell][yCell] = new Cell xCell, yCell
+		for y in [0...3]
+			for x in [0...3]
+				@cells_grid[x][y] = new Cell x, y
 
 	populateIceNodes: ->
 		count = 0
 		while count isnt @probability
-			xCell = Math.floor(Math.random() * @cells.length)  # Choose random x coordinate
-			yCell = Math.floor(Math.random() * @cells.length)  # Choose random y coordinate
-			@cells_grid[xCell][yCell].setCellSafety(false)  # Create an ice node
+			xCell = Math.floor(Math.random() * 3)  # Choose random x coordinate
+			yCell = Math.floor(Math.random() * 3)  # Choose random y coordinate
+			cell = @cells_grid[xCell][yCell]
+			cell.setCellSafety(false)  # Create an ice node
+			console.log(xCell, yCell, cell)
 			count++
 
 	checkForWin: ->
@@ -179,22 +184,23 @@ class Cell
 
 	constructor: (x, y, safe = true) ->
 		@isSafe = true  # This may be irrelevant
-		@cellValue = 0
+		@isRevealed = false
+		@value = 0
 		@x = x
 		@y = y
 
-	@isCellSafe: ->
+	isCellSafe: ->
 		@isSafe
 
-	@setCellSafety: (safeBool) ->
-		if safeBool is true or false
-			@isSafe = safeBool
+	setCellSafety: (safeBool) ->
+		@isSafe = safeBool
 
 	activate: ->
+		@isRevealed = yes
 		if @isSafe
-			@cellValue = 1
+			@value = 1
 		else
-			@cellValue = 0
+			@value = 0
 
 
 module.exports = Board
