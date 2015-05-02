@@ -7,7 +7,7 @@ class Game
 
 	start: ->
 		console.log 'Game start'
-		@board.nextTurn()
+		#@board.nextTurn()
 
 
 module.exports = Game

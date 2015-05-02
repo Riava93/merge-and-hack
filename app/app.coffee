@@ -5,6 +5,17 @@ angular.module 'mergeAndHack', ['ngAnimate']
 		$scope.game = _theGame
 		$scope.game.start()
 
+		$scope.setPlayer = (corporation) ->
+			_theGame.board.chooseCorporation(corporation)
+			_theGame.board.setAI()
+			_theGame.board.nextTurn()
+
+		$scope.chooseCorporation = ->
+			_theGame.board.state.current = _theGame.board.state.CHOOSE_CORP
+
+		$scope.startGame = ->
+			_theGame.board.nextTurn()
+
 		$scope.selectEventCard = (index) ->
 			_theGame.board.selectCard index, 0
 

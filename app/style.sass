@@ -167,3 +167,70 @@ div.card
     height: 30/$em
   .puzzle-row
     clear: both
+
+
+.getting-started
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: white
+  z-index: 300
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  .game-details
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: flex-start
+    .about-game, .how-to
+      flex: 1
+      padding: 30px
+.button
+  margin: 24px 0
+  border: none
+  cursor: pointer
+  border-radius: 4px
+  background: #008aff
+  color: white
+  font-weight: bold
+  font-size: 1.3em
+  padding: 10px 30px
+  transition: 0.2s
+  &:hover
+    background: lighten(#008aff, 8%)
+
+.chooseCorporation
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  padding-top: 50px
+  background: white
+  z-index: 300
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: center
+  .corporations
+    display: flex
+    flex-direction: row
+    align-items: flex-start
+    .corporation
+      .corp-name
+        font-variant: small-caps
+      padding: 20px 30px
+      margin: 20px
+      border: 1px solid
+      text-align: center
+      ul
+        list-style: none
+        margin: 0
+        padding: 0
+        text-align: left
+        li
+          margin: 16px 0
