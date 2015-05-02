@@ -48,20 +48,12 @@ class Board
 		for group in @cardGroups
 			group.shuffle()
 
-
 	chooseCorporation: (corp) ->
-		corp.isHuman = yes
-
-	setAI: ->
-		aiId = 0
-		for corp in @players
-			unless corp.isHuman
-				aiId++
-				if aiId is 1
-					firstAI = new AI corp
-				else if aiId is 2
-					secondAI = new AI corp
-
+		@players.splice @players.indexOf(corp), 1
+		@players.unshift corp
+		new AI @players[1]
+		new AI @players[2]
+		@nextTurn()
 
 	nextTurn: ->
 		@state.current = @state.TURN_START

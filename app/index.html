@@ -153,6 +153,10 @@
 
 		<div class="hack-puzzle modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING">
 			<h3>Hack your opponent</h3>
+			<dl>
+				<dt>Probability of success</dt>
+				<dd>{{(9 - game.board.hackPuzzle.probability) / 9 | prettyPercent}}</dd>
+			</dl>
 			<div class="puzzle-row" ng-repeat="row in game.board.hackPuzzle.cells_grid">
 				<div class="puzzle-cell" ng-repeat="cell in row">
 					<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">?</button>

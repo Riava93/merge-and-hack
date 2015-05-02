@@ -7,8 +7,6 @@ angular.module 'mergeAndHack', ['ngAnimate']
 
 		$scope.setPlayer = (corporation) ->
 			_theGame.board.chooseCorporation(corporation)
-			_theGame.board.setAI()
-			_theGame.board.nextTurn()
 
 		$scope.chooseCorporation = ->
 			_theGame.board.state.current = _theGame.board.state.CHOOSE_CORP
@@ -37,3 +35,7 @@ angular.module 'mergeAndHack', ['ngAnimate']
 
 		$scope.confirmResults = ->
 			_theGame.board.endTurn()
+
+	.filter 'prettyPercent', ->
+		return (double) ->
+			return Math.ceil(double * 100) + '%'
