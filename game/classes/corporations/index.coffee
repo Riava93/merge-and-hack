@@ -25,7 +25,7 @@ class BubbleHearth extends MegaCorporation
 		@stats.product = 3
 		@stats.security = 50
 		@stats.espionage = 3
-		@cash = 50
+		@cash = 30
 		@description = 'A security focused company that made it\'s fortune from providing insurance on virtual game items'
 		super()
 
