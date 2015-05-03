@@ -207,7 +207,7 @@
 
 		<div class="game-over" ng-if="game.board.state.current === game.board.state.GAME_OVER">
 			<h1>Game Over</h1>
-			<section class="game-over-two-years" ng-if="game.board.endGameResult === 'two_year'">
+			<section class="game-over-two-years" ng-if="game.board.endGameResult.outcome === 'two_year'">
 				<h3>{{ game.board.endGameResult.winCondition }}</h3>
 
 				<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
@@ -222,6 +222,8 @@
 
 				<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
 			</section>
+
+			<button class="button" ng-click="startNewGame()">New Game</button>
 		</div>
 		<script src="/app.js"></script>
 	</body>

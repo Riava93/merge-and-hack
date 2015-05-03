@@ -5,6 +5,11 @@ angular.module 'mergeAndHack', ['ngAnimate']
 		$scope.game = _theGame
 		$scope.game.start()
 
+		$scope.startNewGame = ->
+			_theGame = new $window.Game
+			$scope.game = _theGame
+			$scope.game.start()
+
 		$scope.setPlayer = (corporation) ->
 			_theGame.board.chooseCorporation(corporation)
 
