@@ -12,7 +12,7 @@ class Event extends Card
 	tick: (board, corp) ->
 		super board
 		console.log 'corp cash', corp.cash, 'adding product value', @stats.product
-		corp.cash += @stats.product
+		corp.cash += Math.ceil(@stats.product / 10)
 		if @expiry isnt -1
 			@expiry--
 

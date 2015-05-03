@@ -101,7 +101,8 @@ class Board
 
 	reshuffleEmptyDecks: ->
 		for group in @cardGroups
-			if group.newStack.length is 1
+			if group.newStack.length <= 2
+				debugger
 				#console.log "%c Reshuffling #{group}", "background: #008aff; color: white;"
 				group.shuffle()
 
@@ -255,12 +256,11 @@ class HackResult extends Results
 			reward = @defender.subsidiaries.shift()
 			@attacker.subsidiaries.push reward
 			console.log "Awarded subsidiary: #{reward.name} => #{@attacker.name}"
-		else if @defender.cash > 0
-			@attacker.cash += 2
-			@defender.cash -= 2
+		else if @defender.cash >= 0
+			@attacker.cash += 5
+			@defender.cash -= 5
 			console.log "#{@attacker.name} stole $1M from #{@defender.name}"
-		else
-			console.log "#{@defender.name} has absolutely nothing to take! Quit picking on them!"
+
 
 	failConsequence: ->
 		if @attacker.cash > 0

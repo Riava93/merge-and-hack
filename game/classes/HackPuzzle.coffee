@@ -12,16 +12,8 @@ class HackPuzzle
 		# (1 - (attackEsp / defendSec)) * 6 [randomly choose Math.ceil, or Math.floor]
 		@probability = ((1 - @playerEspionage / @targetsSecurity) * 6 || 1)
 		if @probability < 0
-			return @probability = 0
-
-		rand_num = Math.random()
-
-		if rand_num > 0.5
-			@probability = Math.ceil(@probability)
-		else
-			@probability = Math.floor(@probability)
-
-		console.log 'probability', @probability
+			return @probability = 1
+		@probability = Math.ceil(@probability)
 
 	buildGrid: ->
 		#  Instantiate a new cell in the grid

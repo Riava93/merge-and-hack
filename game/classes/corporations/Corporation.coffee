@@ -31,7 +31,7 @@ class MegaCorporation
 
 	tick: (board, wasHackAttempted) ->
 		for subsidiary in @subsidiaries
-			subsidiary.tick()
+			subsidiary.tick(board, @)
 		for i in [(@events.length - 1)..0] by -1 #@events
 			event = @events[i]
 			event.merge @
