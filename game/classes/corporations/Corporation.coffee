@@ -15,6 +15,7 @@ class MegaCorporation
 		@cash = 0
 		@subsidiaries = [] # subsidiary company cards
 		@events = [] # event cards
+		@affinity = null # does the mega corp lean to one direction when AI is deciding?
 		@initialize()
 
 	initialize: ->
@@ -23,9 +24,9 @@ class MegaCorporation
 	calculateTotalStats: ->
 		@totalStats = clone @stats
 		for subsidiary in @subsidiaries
-			@totalStats.product += subsidiary.product
-			@totalStats.security += subsidiary.security
-			@totalStats.espionage += subsidiary.espionage
+			@totalStats.product += subsidiary.stats.product
+			@totalStats.security += subsidiary.stats.security
+			@totalStats.espionage += subsidiary.stats.espionage
 		console.log 'total stats', @totalStats
 
 	tick: (board, wasHackAttempted) ->

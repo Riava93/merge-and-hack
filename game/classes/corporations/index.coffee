@@ -4,6 +4,7 @@ subsidiaries = require '../cards/subsidiaries'
 class SparkFresh extends MegaCorporation
 	constructor: ->
 		super 'SparkFresh Inc.', 'bolt'
+		@affinity = 'product'
 
 	initialize: ->
 		@stats.product = 5
@@ -16,6 +17,7 @@ class SparkFresh extends MegaCorporation
 class BubbleHearth extends MegaCorporation
 	constructor: ->
 		super 'Bubble Hearth Industries', 'sun-o'
+		@affinity = 'security'
 
 	initialize: ->
 		@stats.product = 3
@@ -28,6 +30,7 @@ class BubbleHearth extends MegaCorporation
 class Tinjeki extends MegaCorporation
 	constructor: ->
 		super 'Tinjeki Corporation', 'database'
+		@affinity = 'espionage'
 
 	initialize: ->
 		@stats.product = 3

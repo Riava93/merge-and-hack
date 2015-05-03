@@ -5,6 +5,9 @@ class Subsidiary extends Card
 		super id, icon
 		@value = 10
 		@trustLevel = 20  # Default starting trust level
+		@stats.security = 1
+		@stats.product = 1
+		@stats.espionage = 1
 
 	tick: ->
 		super()
