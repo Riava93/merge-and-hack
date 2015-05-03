@@ -1,3 +1,6 @@
-Corporation = require './game/classes/corporations/Corporation'
+cardGroupings = require './game/classes/cardGroupings'
 
-new Corporation
+new cardGroupings.ProductCardGrouping
+new cardGroupings.SecurityCardGrouping
+new cardGroupings.EspionageCardGrouping
+new cardGroupings.InnovationPoolCardGrouping

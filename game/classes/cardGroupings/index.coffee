@@ -63,70 +63,28 @@ class ProductCardGrouping extends CardGrouping
 	constructor: ->
 		super 'bar-chart'
 		@name = 'Product'
-		@add new cards.events.product.SuccessfulSprint
-		@add new cards.events.product.MarketingPlan
-		@add new cards.events.product.KeynoteSpeech
-		@add new cards.events.product.AdCampaign
-		@add new cards.events.product.ViralCampaign
-		@add new cards.events.product.ISOCompliance
-		@add new cards.events.product.BrandRedesign
-		@add new cards.events.product.SalesEvent
-		@add new cards.events.product.NewProductLine
-		@add new cards.events.product.ImprovedCustomerService
-		@add new cards.events.product.Spokesperson
+		for k, v of cards.events.product
+			@add new v
 
 class SecurityCardGrouping extends CardGrouping
 	constructor: ->
 		super 'shield'
 		@name = 'Security'
-		@add new cards.events.security.HashedPasswords
-		@add new cards.events.security.InjectionPrevention
-		@add new cards.events.security.CrossOriginPolicy
-		@add new cards.events.security.AccessControl
-		@add new cards.events.security.HTTPS
-		@add new cards.events.security.CSRFTokens
-		@add new cards.events.security.ReduceVulnerabilities
-		@add new cards.events.security.SecureSessions
-		@add new cards.events.security.OAuthAccess
-		@add new cards.events.security.ConsistentSecurity
-		@add new cards.events.security.ReduceExposure
-		@add new cards.events.security.GetOffOfWordPress
-		@add new cards.events.security.Insurance
+		for k, v of cards.events.security
+			@add new v
 
 class EspionageCardGrouping extends CardGrouping
 	constructor: ->
 		super 'user-secret'
 		@name = 'Espionage'
-		@add new cards.events.espionage.UnhashedPasswordFile
-		@add new cards.events.espionage.CrawlerBots
-		@add new cards.events.espionage.CompromisedComputers
-		@add new cards.events.espionage.CustomVirus
-		@add new cards.events.espionage.NewHardware
-		@add new cards.events.espionage.ManInTheMiddle
-		@add new cards.events.espionage.HitTheBank
-		@add new cards.events.espionage.PhishingTechniques
-		@add new cards.events.espionage.InfectPublicRouters
-		@add new cards.events.espionage.SSLExploit
-		@add new cards.events.espionage.InjectionTechniques
-		@add new cards.events.espionage.SocialEngineering
+		for k, v of cards.events.espionage
+			@add new v
 
 class InnovationPoolCardGrouping extends CardGrouping
 	constructor: ->
 		super()
-		@newStack.push new cards.subsidiaries.Sidekick
-		@newStack.push new cards.subsidiaries.Froogle
-		@newStack.push new cards.subsidiaries.Guygantic
-		@newStack.push new cards.subsidiaries.WhitemanOil
-		@newStack.push new cards.subsidiaries.MaximumViableProduct
-		@newStack.push new cards.subsidiaries.Oligoplimart
-		@newStack.push new cards.subsidiaries.Calvinball
-		@newStack.push new cards.subsidiaries.Banana
-		@newStack.push new cards.subsidiaries.BarkshoreHashere
-		@newStack.push new cards.subsidiaries.SpamazonWebServices
-		@newStack.push new cards.subsidiaries.UnitedProductService
-		@newStack.push new cards.subsidiaries.Security
-		@newStack.push new cards.subsidiaries.NationalBusinessMachines
-		@newStack.push new cards.subsidiaries.CashCompanion
+		for k, v of cards.subsidiaries
+			@add new v
 
 module.exports =
 	ProductCardGrouping: ProductCardGrouping
