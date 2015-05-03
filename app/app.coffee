@@ -36,6 +36,12 @@ angular.module 'mergeAndHack', ['ngAnimate']
 		$scope.confirmResults = ->
 			_theGame.board.endTurn()
 
+		###
+		# Prelim
+		###
+		$scope.chooseCorporation()
+		$scope.setPlayer _theGame.board.players[0]
+
 	.filter 'prettyPercent', ->
 		return (double) ->
 			return Math.ceil(double * 100) + '%'

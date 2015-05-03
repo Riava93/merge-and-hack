@@ -27,13 +27,12 @@ class MegaCorporation
 			@totalStats.product += subsidiary.stats.product
 			@totalStats.security += subsidiary.stats.security
 			@totalStats.espionage += subsidiary.stats.espionage
-		console.log 'total stats', @totalStats
 
 	tick: (board, wasHackAttempted) ->
 		for subsidiary in @subsidiaries
 			subsidiary.tick()
 		for event, i in @events
-			event.merge @ if event.hasMerged isnt true
+			event.merge @
 			if wasHackAttempted and board.getCurrentPlayer() is @
 				console.log "tick event: A hack has been done"
 				@stats.security -= event.currentBonus if event.bonusType is 'security'

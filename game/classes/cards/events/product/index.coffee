@@ -42,7 +42,7 @@ class ViralCampaign extends ProductEvent
 
 class ISOCompliance extends ProductEvent
 	constructor: ->
-		super @constructor.name, 'thumbs-o-up'
+		super @constructor.name, 'thumbs-up'
 		@stats.product = 3
 		@expiry = 3
 		@description = 'It\'s time to start shipping less defective products'

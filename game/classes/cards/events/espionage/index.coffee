@@ -69,7 +69,7 @@ class InfectPublicRouters extends EspionageEvent
 
 class SSLExploit extends EspionageEvent
 	constructor: ->
-		super @constructor.name, 'minus-exploit'
+		super @constructor.name, 'minus'
 		@stats.espionage = 7
 		@expiry = 3
 		@description = 'Use a new hacking technique to exploit secure connections'

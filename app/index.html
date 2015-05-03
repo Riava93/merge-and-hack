@@ -86,17 +86,18 @@
 		</div>
 
 		<div class="mega-corporation player-{{$index + 1}}" ng-repeat="corp in game.board.players">
+			<i class="fa fa-{{corp.icon}} fa-3x"></i>
 			<h3>{{corp.name | prettyName}}</h3>
-			<dl>
-				<dt><i class="fa fa-money"></i></dt>
+			<dl class="corp-stats">
+				<dt><i class="fa fa-money fa-fw"></i></dt>
 				<dd>${{corp.cash}}M</dd>
 				<dd>
 					<dl>
-						<dt><i class="fa fa-bar-chart"></i></dt>
+						<dt><i class="fa fa-bar-chart fa-fw"></i></dt>
 						<dd>{{corp.totalStats.product}}</dd>
-						<dt><i class="fa fa-shield"></i></dt>
+						<dt><i class="fa fa-shield fa-fw"></i></dt>
 						<dd>{{corp.totalStats.security}}</dd>
-						<dt><i class="fa fa-user-secret"></i></dt>
+						<dt><i class="fa fa-user-secret fa-fw"></i></dt>
 						<dd>{{corp.totalStats.espionage}}</dd>
 					</dl>
 				</dd>
@@ -104,9 +105,11 @@
 			<h5>Subsidiaries</h5>
 			<ul class="subsidiaries">
 				<li class="subsidiary" ng-repeat="subsidiary in corp.subsidiaries">
-					<i class="fa fa-{{subsidiary.icon}}"></i>
+					<i class="fa fa-{{subsidiary.icon}} fa-2x"></i>
 					<div class="subsidiary-info">
-						<span>{{subsidiary.id}}</span>
+						<h4>{{subsidiary.name | prettyName}}</h4>
+						<span>Value: {{subsidiary.value | prettyMoney}}</span>
+						<p>{{subsidiary.description}}</p>
 					</div>
 				</li>
 			</ul>

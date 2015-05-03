@@ -245,7 +245,7 @@ class GameResult extends Results
 class HackResult extends Results
 
 	constructor: (@attacker, @defender, @outcome) ->
-		if @result
+		if @outcome
 			@stealSubsidiary()
 		else
 			@failConsequence()
@@ -254,7 +254,7 @@ class HackResult extends Results
 		if @defender.subsidiaries.length > 0
 			reward = @defender.subsidiaries.shift()
 			@attacker.subsidiaries.push reward
-			console.log "Awared subsidiary: #{reward.name} => #{@attacker.name}"
+			console.log "Awarded subsidiary: #{reward.name} => #{@attacker.name}"
 		else if @defender.cash > 0
 			@attacker.cash += 2
 			@defender.cash -= 2
