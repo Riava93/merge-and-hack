@@ -202,13 +202,21 @@
 
 		<div class="game-over" ng-if="game.board.state.current === game.board.state.GAME_OVER">
 			<h1>Game Over</h1>
-			<h3>{{ game.board.endGameResult.winCondition }}</h3>
+			<section class="game-over-two-years" ng-if="game.board.endGameResult === 'two_year'">
+				<h3>{{ game.board.endGameResult.winCondition }}</h3>
 
-			<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
+				<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
 
-			<p>
-				{{ game.board.endGameResult.options[0].details }}
-			</p>
+				<p>
+					{{ game.board.endGameResult.options[0].details }}
+				</p>
+			</section>
+
+			<section class="game-over-bankrupt" ng-if="game.board.endGameResult.outcome === 'bankrupt'">
+				<h3>{{ game.board.endGameResult.winCondition }}</h3>
+
+				<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
+			</section>
 		</div>
 		<script src="/app.js"></script>
 	</body>

@@ -52,9 +52,22 @@ class Board
 			group.shuffle()
 		@innovationPool.shuffle()
 
+	isCorporationBankrupt: ->
+		for player in @players
+			if player.cash < 0
+				bankruptPlayer = player
+		if bankruptPlayer?
+			@state.current = @state.GAME_OVER
+			winner = @getPlayerWithHighestValue()
+			@endGameResult = new GameResult 'bankrupt', winner, { details: bankruptPlayer.name }
+
+	shouldGameEnd: (checkBankrupt, checkTime) ->
+		@isCorporationBankrupt() if checkBankrupt
+		@hasTwoYearsPassed() if checkTime
+
 	#  Check if it has been two years
 	hasTwoYearsPassed: ->
-		if @monthsPassed >= 1 # TODO: change this to 24 when done testing
+		if @monthsPassed >= 2 # TODO: change this to 24 when done testing
 			@state.current = @state.GAME_OVER
 			winner = @getPlayerWithHighestValue()
 			@endGameResult = new GameResult 'two_year', winner, { details: 'They had the highest wealth of all players' }
@@ -93,12 +106,14 @@ class Board
 				group.shuffle()
 
 	nextTurn: ->
+		@shouldGameEnd true, false
+		if @endGameResult? then return
 		@state.current = @state.TURN_START
 		@reshuffleEmptyDecks()
 		@turn++
 		if @turn >= @players.length
 			@monthsPassed++
-			@hasTwoYearsPassed()
+			@shouldGameEnd false, true
 			#console.log "%c Months Passed #{@monthsPassed} ", 'background: #008aff; color: white'
 			@turn = 0
 
@@ -222,8 +237,8 @@ class GameResult extends Results
 	determineHowWinHappened: ->  # I am The best at naming methods.
 		if @outcome is 'two_year'
 			return @winCondition = 'Two Years have passed, and it\'s all come to this...'
-		else if @outcome is 'bank_rupt'
-			return @winCondition "#{@options.bankruptCorp} has gone bank rupt and your own the most wealth"
+		else if @outcome is 'bankrupt'
+			return @winCondition = "#{@options[0].details} has gone bank rupt and #{@winner.name} owns the most wealth!"
 
 
 
