@@ -122,51 +122,71 @@
 		</div>
 
 		<div class="merge-or-hack modal" ng-if="game.board.state.current === game.board.state.TURN_DECIDING_MERGE_OR_HACK">
-			<h3>Merge or hack?</h3>
-			<button ng-click="chooseMerge()">Merge</button>
-			<button ng-click="chooseHack()">Hack</button>
+			<div class="content-contain">
+				<h3>Merge or hack?</h3>
+				<div class="buttons-contain">
+					<button class="modal-button" ng-click="chooseMerge()">Merge</button>
+					<button class="modal-button" ng-click="chooseHack()">Hack</button>
+				</div>
+			</div>
 		</div>
 
 		<div class="merger-option modal" ng-if="game.board.state.current === game.board.state.TURN_MERGING">
-			<h3>Confirm merger</h3>
-			<div class="subsidiary-option" ng-repeat="subsidiary in game.board.innovationPool.inPlayStack">
-				<i class="fa fa-{{subsidiary.icon}}"></i>
-				<div class="subsidiary-info">
-					<span>{{subsidiary.name}}</span>
+			<div class="content-contain">
+				<h3>Confirm merger</h3>
+				<div class="subsidiary-option" ng-repeat="subsidiary in game.board.innovationPool.inPlayStack">
+					<i class="fa fa-{{subsidiary.icon}}"></i>
+					<div class="subsidiary-info">
+						<span>{{subsidiary.name}}</span>
+					</div>
+				</div>
+				<div class="buttons-contain">
+					<button class="modal-button" ng-click="confirmMerger(true)">YES</button>
+					<button class="modal-button" ng-click="confirmMerger(false)">NOPE</button>
 				</div>
 			</div>
-			<button ng-click="confirmMerger(true)">YES</button>
-			<button ng-click="confirmMerger(false)">NOPE</button>
 		</div>
 
 		<div class="hack-option modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING_SELECT">
-			<h3>Who should we hack?</h3>
-			<button class="hackable-corporation" ng-if="corp !== game.board.getCurrentPlayer()" ng-repeat="corp in game.board.players" ng-click="confirmHack(corp)">{{corp.name}}</button>
+			<div class="content-contain">
+				<h3>Who should we hack?</h3>
+				<div class="buttons-contain">
+					<button class="modal-button hackable-corporation" ng-if="corp !== game.board.getCurrentPlayer()" ng-repeat="corp in game.board.players" ng-click="confirmHack(corp)">{{corp.name}}</button>
+				</div>
+			</div>
 		</div>
 
 		<div class="hack-puzzle modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING">
-			<h3>Hack your opponent</h3>
-			<p>Get 3 success nodes in a row to succeed</p>
-			<dl>
-				<dt>Probability of success</dt>
-				<dd>{{(9 - game.board.hackPuzzle.probability) / 9 | prettyPercent}}</dd>
-				<dt>Tries remaining</dt>
-				<dd>{{game.board.hackPuzzle.totalTurns}}</dd>
-			</dl>
-			<div class="puzzle-row" ng-repeat="row in game.board.hackPuzzle.cells_grid">
-				<div class="puzzle-cell" ng-repeat="cell in row">
-					<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">?</button>
-					<span ng-if="cell.isRevealed">{{cell.value}}</span>
+			<div class="content-contain">
+				<h3>Hack your opponent</h3>
+				<p>Get 3 success nodes in a row to succeed</p>
+				<dl>
+					<dt>Probability of success</dt>
+					<dd>{{(9 - game.board.hackPuzzle.probability) / 9 | prettyPercent}}</dd>
+					<dt>Tries remaining</dt>
+					<dd>{{game.board.hackPuzzle.totalTurns}}</dd>
+				</dl>
+				<div class="puzzle-container">
+					<div class="puzzle-row" ng-repeat="row in game.board.hackPuzzle.cells_grid">
+						<div class="puzzle-cell" ng-repeat="cell in row">
+							<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">?</button>
+							<span class="revealed-cell" ng-class="{'badCell': !cell.isSafe }" ng-if="cell.isRevealed">{{cell.value}}</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="turn-results modal" ng-if="game.board.state.current === game.board.state.TURN_RESULT">
-			<h3>Results:</h3>
-			<ul>
-				<li ng-repeat="message in game.board.turnRecap">{{ message }}</li>
-			</ul>
-			<button ng-click="confirmResults()">OK</button>
+			<div class="content-contain">
+				<h3>Results:</h3>
+				<ul>
+					<li class="result-message" ng-repeat="message in game.board.turnRecap">{{ message }}</li>
+				</ul>
+				<div class="buttons-contain">
+					<button class="button" ng-click="confirmResults()">OK</button>
+				</div>
+			</div>
 		</div>
 		<script src="/app.js"></script>
 	</body>

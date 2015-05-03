@@ -1,4 +1,5 @@
 @import 'compass'
+@import 'compass/reset'
 
 $font-size: 16
 
@@ -159,13 +160,6 @@ div.card
   margin: auto
 
 .hack-puzzle
-  .puzzle-cell
-    float: left
-    width: 30/$em
-    height: 30/$em
-  .puzzle-row
-    clear: both
-
 
 .getting-started
   position: absolute
@@ -232,3 +226,127 @@ div.card
         text-align: left
         li
           margin: 16px 0
+
+.modal
+  width: 100%
+  height: 100%
+  position: absolute
+
+  &::before
+    content: ''
+    position: absolute
+    z-index: 400
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(0,0,0,0.5)
+
+  .content-contain
+    width: 500px
+    min-height: 300px
+    z-index: 500
+    position: absolute
+    background: white
+    padding: 20px
+    color: rgba(0,0,0,0.8)
+    position: absolute
+    top: 50%
+    left: 50%
+    right: 0
+    transform: translateY(-50%) translateX(-50%)
+
+
+.merge-or-hack
+  h3
+    text-align: center
+    margin-top: 8px
+
+.buttons-contain
+  display: flex
+  margin: 48px auto
+  width: 80%
+  justify-content: space-around
+  align-items: center
+
+.modal-button
+  min-width: 120px
+  height: 80px
+  cursor: pointer
+  font-size: 1.2em
+  background: #f7f7f7
+  font-weight: bold
+  text-transform: uppercase
+  padding: 10px 20px
+  text-align: center
+  border: none
+  transition: 0.2s
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.8)
+  border-radius: 15px
+
+  &:hover
+    background: #f1f1f1
+
+.merger-option
+  h3
+    text-align: center
+    margin-top: 8px
+
+  .subsidiary-info
+    text-align: center
+    text-transform: uppercase
+    font-weight: bold
+    letter-spacing: 0.7px
+
+
+.hack-puzzle
+  dl
+    margin: 16px 0
+    display: flex
+    justify-content: space-between
+    width: 100%
+    dd
+      font-weight: 900
+
+  .puzzle-container
+    width: 130px
+    height: 130px
+    margin: 0 auto
+    padding: 10px
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-around
+
+    button
+      border: none
+      width: 25px
+      height: 25px
+      margin: 10px
+      cursor: pointer
+      background: #f1f1f1
+      box-shadow: 0 0 0 2px #666
+    .revealed-cell
+      width: 25px
+      height: 25px
+      float: none
+      margin: 10px
+      box-shadow: inset 0 0 0 2px green
+      display: flex
+      align-items: center
+      justify-content: space-around
+      font-weight: bold
+
+      &.badCell
+        box-shadow: inset 0 0 0 2px red
+
+
+.turn-results
+  ul
+    margin-left: 10px
+    li
+      margin: 16px 0
+
+  .buttons-contain
+    margin: 24px auto
