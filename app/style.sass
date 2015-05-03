@@ -1,6 +1,10 @@
 @import 'compass'
 @import 'compass/reset'
 
+// colours
+
+$darkgrey: #35393C
+
 $font-size: 16
 
 $em: $font-size / 1em
@@ -359,3 +363,25 @@ div.card
 
   .buttons-contain
     margin: 24px auto
+
+
+.game-over
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  z-index: 600
+  background: $darkgrey
+  color: white
+
+  h2
+    font-variant: small-caps
+    font-size: 6em
+    text-shadow: 0 0 1px darken($darkgrey, 10%)
+    margin: 0
+    text-transform: lowercase

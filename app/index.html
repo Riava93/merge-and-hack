@@ -202,7 +202,13 @@
 
 		<div class="game-over" ng-if="game.board.state.current === game.board.state.GAME_OVER">
 			<h1>Game Over</h1>
-			<h2>SparkFresh Wins!</h2>
+			<h3>{{ game.board.endGameResult.winCondition }}</h3>
+
+			<h2>{{ game.board.endGameResult.winner.name }} Won!</h2>
+
+			<p>
+				{{ game.board.endGameResult.options[0].details }}
+			</p>
 		</div>
 		<script src="/app.js"></script>
 	</body>

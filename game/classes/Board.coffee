@@ -54,10 +54,30 @@ class Board
 
 	#  Check if it has been two years
 	hasTwoYearsPassed: ->
-		if @monthsPassed >= 24
+		if @monthsPassed >= 1 # TODO: change this to 24 when done testing
 			@state.current = @state.GAME_OVER
-			console.log '%c THE GAME IS OVER ', 'background: red; color: white'
-			@winCondition = 'two_years'
+			winner = @getPlayerWithHighestValue()
+			@endGameResult = new GameResult 'two_year', winner, { details: 'They had the highest wealth of all players' }
+			console.log "%c End game result details %o", 'background: #008aff; color: white', @endGameResult
+			#console.log '%c THE GAME IS OVER ', 'background: red; color: white'
+
+	getPlayerWithHighestValue: ->
+		highestValue = -1
+		for index, player of @players
+			console.log
+			value = @calculateSubsidiaryValues(player) + player.cash
+			if highestValue < value
+				highestValue = value
+				currentWinningPlayer = player
+		return currentWinningPlayer
+
+	calculateSubsidiaryValues: (player) ->
+		total = 0
+		if player.subsidiaries.length is 0
+			return total
+		for sub in player.subsidiaries
+			total += sub.value
+		return total
 
 	chooseCorporation: (corp) ->
 		@players.splice @players.indexOf(corp), 1
@@ -166,10 +186,14 @@ class Board
 			@triggerTick()
 			@state.current = @state.TURN_RESULT
 			if @hackPuzzle.hackSuccessful
-				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', @hackPuzzle.attacker, @hackPuzzle.defender
+				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+				@outcome.type = 'Hacquisition'
+				@outcome.details = "You've successfully hacked #{@hackPuzzle.defender}!"
 				@addToTurnRecap "#{@hackPuzzle.attacker.name} successfully hacked #{@hackPuzzle.defender.name}"
 			else
-				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', @hackPuzzle.attacker, @hackPuzzle.defender
+				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+				@outcome.type = 'Hacquisition'
+				@outcome.details = "You've failed to hack #{@hackPuzzle.defender}!"
 				@addToTurnRecap "#{@hackPuzzle.attacker.name} failed to hack #{@hackPuzzle.defender.name}"
 		else
 			console.log 'continuing the hack'
@@ -179,12 +203,33 @@ class Board
 		if result
 			@state.current = @state.TURN_RESULT
 			@triggerTick()
-			@outcome = new Results 'hacquisition', !result, 'You bailed out of the hacquisition!'
+			@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+			@outcome.type = 'Hacquisition'
+			@outcome.details = "You've bailed out of your hack on #{@hackPuzzle.defender}!"
 			@addToTurnRecap "#{@players[@turn].name} bailed out of the hack!"
 
 class Results
 
-	constructor: (@type, @result, @details, @attacker, @defender) ->
+	constructor: (@type, @details, @options...) ->
+
+
+
+class GameResult extends Results
+
+	constructor: (@outcome, @winner, @options...) ->
+		@determineHowWinHappened()
+
+	determineHowWinHappened: ->  # I am The best at naming methods.
+		if @outcome is 'two_year'
+			return @winCondition = 'Two Years have passed, and it\'s all come to this...'
+		else if @outcome is 'bank_rupt'
+			return @winCondition "#{@options.bankruptCorp} has gone bank rupt and your own the most wealth"
+
+
+
+class HackResult extends Results
+
+	constructor: (@attacker, @defender, @outcome) ->
 		if @result
 			@stealSubsidiary()
 		else
