@@ -191,7 +191,7 @@ class Board
 		# Return selected player as target
 		attackingPlayer = @getCurrentPlayer()
 		@state.current = @state.TURN_HACKING unless target is attackingPlayer
-		@addToTurnRecap "#{attackingPlayer.name} attempts a hacquisiton on #{target.name}!"
+		@addToTurnRecap "#{attackingPlayer.name} attempted a hacquisiton on #{target.name}!"
 		@hackPuzzle = new HackPuzzle attackingPlayer, target
 		#@endTurn()
 
@@ -202,15 +202,15 @@ class Board
 			@triggerTick()
 			@state.current = @state.TURN_RESULT
 			if @hackPuzzle.hackSuccessful
-				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+				@addToTurnRecap "#{@hackPuzzle.attacker.name} successfully hacked #{@hackPuzzle.defender.name}"
+				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful, @
 				@outcome.type = 'Hacquisition'
 				@outcome.details = "You've successfully hacked #{@hackPuzzle.defender}!"
-				@addToTurnRecap "#{@hackPuzzle.attacker.name} successfully hacked #{@hackPuzzle.defender.name}"
 			else
-				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+				@addToTurnRecap "#{@hackPuzzle.attacker.name} failed to hack #{@hackPuzzle.defender.name}"
+				@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful, @
 				@outcome.type = 'Hacquisition'
 				@outcome.details = "You've failed to hack #{@hackPuzzle.defender}!"
-				@addToTurnRecap "#{@hackPuzzle.attacker.name} failed to hack #{@hackPuzzle.defender.name}"
 		else
 			console.log 'continuing the hack'
 
@@ -219,10 +219,10 @@ class Board
 		if result
 			@state.current = @state.TURN_RESULT
 			@triggerTick()
-			@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful
+			@addToTurnRecap "#{@players[@turn].name} bailed out of the hack!"
+			@outcome = new HackResult @hackPuzzle.attacker, @hackPuzzle.defender, @hackPuzzle.hackSuccessful, @
 			@outcome.type = 'Hacquisition'
 			@outcome.details = "You've bailed out of your hack on #{@hackPuzzle.defender}!"
-			@addToTurnRecap "#{@players[@turn].name} bailed out of the hack!"
 
 class Results
 
@@ -245,7 +245,7 @@ class GameResult extends Results
 
 class HackResult extends Results
 
-	constructor: (@attacker, @defender, @outcome) ->
+	constructor: (@attacker, @defender, @outcome, @board) ->
 		if @outcome
 			@stealSubsidiary()
 		else
@@ -255,17 +255,14 @@ class HackResult extends Results
 		if @defender.subsidiaries.length > 0
 			reward = @defender.subsidiaries.shift()
 			@attacker.subsidiaries.push reward
-			console.log "Awarded subsidiary: #{reward.name} => #{@attacker.name}"
+			@board.addToTurnRecap "Awarded subsidiary: #{reward.name}"
 		else if @defender.cash >= 0
 			@attacker.cash += 5
 			@defender.cash -= 5
-			console.log "#{@attacker.name} stole $1M from #{@defender.name}"
-
+			@board.addToTurnRecap "#{@attacker.name} stole $5B from #{@defender.name}"
 
 	failConsequence: ->
-		if @attacker.cash > 0
-			@attacker.cash -= 1
-		else
-			console.log "#{@attacker.name} has no funds to lose!"
+		@attacker.cash -= 1
+		@board.addToTurnRecap "#{@attacker.name} lost $1B for getting caught red handed"
 
 module.exports = Board
