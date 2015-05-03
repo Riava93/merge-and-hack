@@ -57,6 +57,7 @@ class Board
 		if @monthsPassed >= 24
 			@state.current = @state.GAME_OVER
 			console.log '%c THE GAME IS OVER ', 'background: red; color: white'
+			@winCondition = 'two_years'
 
 	chooseCorporation: (corp) ->
 		@players.splice @players.indexOf(corp), 1
