@@ -118,11 +118,11 @@
 			<div class="card-group" ng-repeat="cardGroup in game.board.cardGroups">
 				<div class="card flipped-{{card.isFlipped}} retained-{{card.isRetained}} visible-{{card.isVisible}}" ng-repeat="card in cardGroup.allCards">
 					<div class="front face" ng-click="selectEventCard($parent.$index)">
-						<span>{{card.name}}</span>
+						<h5>{{card.name}}</h5>
 					</div>
 					<div class="back face">
 						<i class="fa fa-{{cardGroup.icon}}"></i>
-						<span>{{cardGroup.name}}</span>
+						<h5>{{cardGroup.name}}</h5>
 					</div>
 				</div>
 			</div>
