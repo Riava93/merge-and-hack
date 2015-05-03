@@ -80,6 +80,8 @@
 			Current player: {{game.board.players[game.board.turn].name}}
 			<br />
 			Current State: {{game.board.state.toString()}}
+			<br />
+			Current Month: {{game.board.monthsPassed}}
 		</div>
 
 		<div class="mega-corporation player-{{$index + 1}}" ng-repeat="corp in game.board.players">
@@ -189,6 +191,11 @@
 					<button class="button" ng-click="confirmResults()">OK</button>
 				</div>
 			</div>
+		</div>
+
+		<div class="game-over" ng-if="game.board.state.current === game.board.state.GAME_OVER">
+			<h1>Game Over</h1>
+			<h2>SparkFresh Wins!</h2>
 		</div>
 		<script src="/app.js"></script>
 	</body>

@@ -30,6 +30,7 @@ class Board
 		@state = new GameState
 
 	setUp: ->
+		@monthsPassed = 0
 		@state.current = @state.GAME_INFO
 		@turn = -1 # No turn yet, first call to nextTurn() will let player 1 go first
 		@players = [
@@ -51,6 +52,12 @@ class Board
 			group.shuffle()
 		@innovationPool.shuffle()
 
+	#  Check if it has been two years
+	hasTwoYearsPassed: ->
+		if @monthsPassed >= 24
+			@state.current = @state.GAME_OVER
+			console.log '%c THE GAME IS OVER ', 'background: red; color: white'
+
 	chooseCorporation: (corp) ->
 		@players.splice @players.indexOf(corp), 1
 		@players.unshift corp
@@ -60,8 +67,8 @@ class Board
 
 	reshuffleEmptyDecks: ->
 		for group in @cardGroups
-			if group.length = 0
-				console.log "Reshuffling #{group}"
+			if group.newStack.length is 1
+				#console.log "%c Reshuffling #{group}", "background: #008aff; color: white;"
 				group.shuffle()
 
 	nextTurn: ->
@@ -69,6 +76,9 @@ class Board
 		@reshuffleEmptyDecks()
 		@turn++
 		if @turn >= @players.length
+			@monthsPassed++
+			@hasTwoYearsPassed()
+			#console.log "%c Months Passed #{@monthsPassed} ", 'background: #008aff; color: white'
 			@turn = 0
 
 		for group in @cardGroups

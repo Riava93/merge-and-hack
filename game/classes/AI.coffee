@@ -36,7 +36,6 @@ class AI
 
 	selectTarget: ->
 		targets = []
-		debugger
 		for player in @board.players
 			if player isnt @me
 				targets.push player
