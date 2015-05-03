@@ -63,7 +63,7 @@
 					<i class="fa fa-{{corp.icon}} fa-3x {{corp.color}}"></i>
 					<p>{{ corp.description }}</p>
 
-					<h4>Starting Cash: ${{corp.cash}}M</h4>
+					<h4>Starting Cash: {{corp.cash | prettyMoney}}</h4>
 					<h4>Stats</h4>
 					<ul>
 						<li ng-repeat="(stat, value) in corp.totalStats">
