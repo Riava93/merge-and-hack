@@ -129,14 +129,18 @@ class Board
 		@addToTurnRecap "#{@players[@turn].name} has chosen to try a merger"
 
 	confirmMerger: (shouldMerge) ->
+		currentCorp = @players[@turn]
 		if shouldMerge
 			subsidiary = @innovationPool.select 0
-			currentCorp = @players[@turn]
+			currentCorp.cash -= subsidiary.value
 			currentCorp.subsidiaries.push subsidiary
 			@addToTurnRecap "#{currentCorp.name} chose to merge with #{subsidiary.name}"
 		else
+			if currentCorp.cash >= @innovationPool.inPlayStack[0].value
+				@addToTurnRecap "#{@players[@turn].name} chose not to merge."
+			else
+				@addToTurnRecap "#{@players[@turn].name} could not afford to merge."
 			@innovationPool.clear()
-			@addToTurnRecap "#{@players[@turn].name} chose not to merge."
 		@state.current = @state.TURN_RESULT
 
 	selectHack: ->
@@ -191,15 +195,15 @@ class Results
 			@attacker.subsidiaries.push reward
 			console.log "Awared subsidiary: #{reward.name} => #{@attacker.name}"
 		else if @defender.cash > 0
-			@attacker.cash += 1
-			@defender.cash -= 1
+			@attacker.cash += 2
+			@defender.cash -= 2
 			console.log "#{@attacker.name} stole $1M from #{@defender.name}"
 		else
 			console.log "#{@defender.name} has absolutely nothing to take! Quit picking on them!"
 
 	failConsequence: ->
 		if @attacker.cash > 0
-			@attacker.cash -= 100
+			@attacker.cash -= 1
 		else
 			console.log "#{@attacker.name} has no funds to lose!"
 

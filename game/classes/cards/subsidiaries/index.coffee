@@ -3,7 +3,7 @@ Card = require '../Card'
 class Subsidiary extends Card
 	constructor: (id, icon) ->
 		super id, icon
-		@value = 0
+		@value = 10
 		@trustLevel = 20  # Default starting trust level
 
 	tick: ->
@@ -13,7 +13,6 @@ class Subsidiary extends Card
 class Sidekick extends Subsidiary
 	constructor: ->
 		super 'sidekick', 'male'
-		@value = 10000000
 		@stats.security = 3
 		@stats.product = 4
 		@stats.espionage = 3

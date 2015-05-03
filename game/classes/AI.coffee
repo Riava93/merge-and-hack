@@ -16,7 +16,6 @@ class AI
 				#console.log "The current lowest stat is #{key}"
 		@weakestStat = lowestStat
 
-
 	chooseCard: (weakestStat) ->
 		if weakestStat is 'product'
 			@board.selectCard 0
@@ -29,7 +28,7 @@ class AI
 		randInt = Math.random()
 		if randInt > 0.5
 			@board.selectMerge()
-			@board.confirmMerger yes
+			@board.confirmMerger(@me.cash >= @board.innovationPool.inPlayStack[0].value)
 		else
 			@board.selectHack()
 			@solveHackPuzzle(@selectTarget())

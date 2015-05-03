@@ -39,3 +39,7 @@ angular.module 'mergeAndHack', ['ngAnimate']
 	.filter 'prettyPercent', ->
 		return (double) ->
 			return Math.ceil(double * 100) + '%'
+
+	.filter 'prettyMoney', ->
+		return (int) ->
+			return "$#{int}M"

@@ -17,11 +17,12 @@
 				<section class="about-game">
 					<h2>It's all come to this...</h2>
 					<p>
-						In the not so distant future, web security is out of control. Law makers have absolved themselves of the responsibility policing cyber attacks. It is up to corporations to protect their own assets or face the price.
+						In the not so distant future, web security is out of control. Law makers have absolved themselves of the responsibility of policing cyber attacks. Corporations must protect their own assets or face the price.
 					</p>
 					<h4>This is the age of Mergers and Hacquisitions.</h4>
 					<p>
-						You haves been appointed CEO of one of the last 3 remaining corporations and have 2 years to prove your worth to the investors. Good luck.
+					You haves been appointed CEO of one of the last remaining mega corporations. You have 2 years to prove your worth to the investors.
+					<br /><br />Good luck.
 					</p>
 				</section>
 
@@ -34,11 +35,12 @@
 					</section>
 
 					<section class="rules-and-explanation">
-						<ol>
-							<h4 class="rules">During your turn:</h4>
+						<h4 class="rules">During your turn:</h4>
+						<ol class="rules-list">
 							<li>Choose an event card for your corporation</li>
 							<li>Decide to look at a potential merger or hack instead</li>
 							<li>Either pay for a subsidiary or take chances on hacking for one</li>
+							<li>Get rich or fired trying</li>
 						</ol>
 					</section>
 				</section>
@@ -141,12 +143,17 @@
 				<div class="subsidiary-option" ng-repeat="subsidiary in game.board.innovationPool.inPlayStack">
 					<i class="fa fa-{{subsidiary.icon}}"></i>
 					<div class="subsidiary-info">
-						<span>{{subsidiary.name}}</span>
+						<h4>{{subsidiary.name}}</h4>
+						<h4>Cost: {{subsidiary.value | prettyMoney}}</h4>
 					</div>
-				</div>
-				<div class="buttons-contain">
-					<button class="modal-button" ng-click="confirmMerger(true)">YES</button>
-					<button class="modal-button" ng-click="confirmMerger(false)">NOPE</button>
+					<div class="buttons-contain" ng-if="subsidiary.value <= game.board.getCurrentPlayer().cash">
+						<button class="modal-button" ng-click="confirmMerger(true)">YES</button>
+						<button class="modal-button" ng-click="confirmMerger(false)">NOPE</button>
+					</div>
+					<div class="buttons-contain" ng-if="subsidiary.value > game.board.getCurrentPlayer().cash">
+						<p>Unfortunately this company is out of your budget</p>
+						<button class="modal-button" ng-click="confirmMerger(false)">DAMN</button>
+					</div>
 				</div>
 			</div>
 		</div>
