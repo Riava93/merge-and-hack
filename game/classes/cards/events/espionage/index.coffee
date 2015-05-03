@@ -21,7 +21,7 @@ class CrawlerBots extends EspionageEvent
 class CompromisedComputers extends EspionageEvent
 	constructor: ->
 		super @constructor.name, 'group'
-		@stats.espionage = 10
+		@stats.espionage = 1
 		@expiry = 1
 		@description = 'We have a database of infected computers that can be used in a DDOS attack'
 

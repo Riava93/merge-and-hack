@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="/app.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	</head>
-	<body ng-controller="GameController">
+	<body ng-cloak ng-controller="GameController">
 
 		<div ng-if="game.board.state.current === game.board.state.GAME_INFO" class="getting-started">
 			<h1><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i> Mergers &amp; <i class="fa fa-download"></i> Hacquisitions</h1>
@@ -90,7 +90,7 @@
 			<h3>{{corp.name | prettyName}}</h3>
 			<dl class="corp-stats">
 				<dt><i class="fa fa-money fa-fw"></i></dt>
-				<dd>${{corp.cash}}M</dd>
+				<dd>{{corp.cash | prettyMoney }}</dd>
 				<dd>
 					<dl>
 						<dt><i class="fa fa-bar-chart fa-fw"></i></dt>

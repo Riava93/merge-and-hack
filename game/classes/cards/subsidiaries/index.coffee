@@ -113,70 +113,70 @@ class NationalBusinessMachines extends Subsidiary
 		super @constructor.name, 'star-o'
 		@description = 'A premier enterprise business solutions company.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class DukesSecurity extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'An average security company that stays in business mostly by bandwagoning on Dukes of Hazzard nostalgia in its commercials.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class CashCompanion extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'They are really good with not losing money'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class EdgeSecurity extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'A company pushing the limits on web security and extreme sports.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class IntelliSolutions extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'A strong research team, but their engineers are really socially akward.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class Macrosoft extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'Security, security, security, security.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class JonesControlSystems extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'Their master control room does not disappoint. Lifestyles of the secure and discrete.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class GenSecSecurities extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'A new age security company led by an ex black hat hacker.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class TheSecurityCompany extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'You don\'t need a witty business name to prevent hacktastrophes'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 class ChariotSecurity extends Subsidiary
 	constructor: ->
 		super @constructor.name, 'star-o'
 		@description = 'The premier security provider. You know you are overpaying, but it will be great for your image.'
 		@value = 10
-		@stats.security = 1
+		@stats.security = 10
 
 ###
 # Espionage

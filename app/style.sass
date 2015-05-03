@@ -16,6 +16,9 @@ $font-size: 16
 
 $em: $font-size / 1em
 
+.ng-cloak
+  display: none !important
+
 *
   -webkit-touch-callout: none
   -webkit-user-select: none
@@ -216,6 +219,12 @@ div.card
       -webkit-transform: rotatey(180deg)
     &.back
       background-color: #aaa
+      i
+        font-size: 4em
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translateX(-50%) translateY(-50%)
 
 .modal
   position: relative
@@ -312,6 +321,7 @@ div.card
     width: 500px
     min-height: 300px
     z-index: 500
+    box-shadow: 0 0 0 10px darken($color-dark-blue, 8%), 2px 2px 2px 10px $color-black
     position: absolute
     background: white
     padding: 20px
@@ -327,6 +337,8 @@ div.card
   h3
     text-align: center
     margin-top: 8px
+    padding-bottom: 20px
+    border-bottom: 1px solid rgba(0,0,0,0.1)
 
 .buttons-contain
   display: flex
@@ -337,21 +349,21 @@ div.card
 
 .modal-button
   min-width: 120px
-  height: 80px
+  height: 60px
   cursor: pointer
+  color: white
+  background: $color-medium-blue
   font-size: 1.2em
-  background: #f7f7f7
   font-weight: bold
   text-transform: uppercase
   padding: 10px 20px
   text-align: center
   border: none
   transition: 0.2s
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.8)
-  border-radius: 15px
+  border-radius: 4px
 
   &:hover
-    background: #f1f1f1
+    background: lighten($color-medium-blue, 8%)
 
 .merger-option
   h3
