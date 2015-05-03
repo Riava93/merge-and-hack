@@ -42,6 +42,7 @@ class Board
 			new cardGroupings.SecurityCardGrouping
 			new cardGroupings.EspionageCardGrouping
 		]
+		@computerAIPlayers = []
 
 		@innovationPool = new cardGroupings.InnovationPoolCardGrouping
 
@@ -53,8 +54,8 @@ class Board
 	chooseCorporation: (corp) ->
 		@players.splice @players.indexOf(corp), 1
 		@players.unshift corp
-		new AI @players[1]
-		new AI @players[2]
+		@computerAIPlayers.push new AI @players[1]
+		@computerAIPlayers.push new AI @players[2]
 		@nextTurn()
 
 	nextTurn: ->
@@ -63,13 +64,11 @@ class Board
 		if @turn >= @players.length
 			@turn = 0
 
-		if @turn > 0 # this is an AI player
-			console.log 'do AI logic here...'
-
 		for group in @cardGroups
 			group.draw()
 
-		console.log 'next turn for player', @players[@turn]
+		if @turn > 0 # this is an AI player
+			@computerAIPlayers[@turn - 1].think @
 
 	turnRecap: []
 
@@ -78,7 +77,6 @@ class Board
 
 	addToTurnRecap: (message) ->
 		@turnRecap.push message
-
 
 	triggerTick: ->
 		console.log "TRIGGER TICK CURRENT STATE: #{@state.current}"
