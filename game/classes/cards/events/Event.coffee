@@ -6,6 +6,7 @@ class Event extends Card
 		@value = 0
 		@expiry = -1
 		@hasMerged = false
+		@currentBonus = 0
 
 	tick: ->
 		super()

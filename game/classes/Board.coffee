@@ -58,8 +58,15 @@ class Board
 		@computerAIPlayers.push new AI @players[2]
 		@nextTurn()
 
+	reshuffleEmptyDecks: ->
+		for group in @cardGroups
+			if group.length = 0
+				console.log "Reshuffling #{group}"
+				group.shuffle()
+
 	nextTurn: ->
 		@state.current = @state.TURN_START
+		@reshuffleEmptyDecks()
 		@turn++
 		if @turn >= @players.length
 			@turn = 0
@@ -116,11 +123,11 @@ class Board
 			subsidiary = @innovationPool.select 0
 			currentCorp = @players[@turn]
 			currentCorp.subsidiaries.push subsidiary
-			@addToTurnRecap "#{currentCorp} chose to merge with #{subsidiary.name}"
+			@addToTurnRecap "#{currentCorp.name} chose to merge with #{subsidiary.name}"
 		else
 			@innovationPool.clear()
 			@addToTurnRecap "#{@players[@turn].name} chose not to merge."
-		@endTurn()
+		@state.current = @state.TURN_RESULT
 
 	selectHack: ->
 		@state.current = @state.TURN_HACKING_SELECT
