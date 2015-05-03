@@ -67,7 +67,7 @@
 					<h4>Starting Cash: ${{corp.cash}}M</h4>
 					<h4>Stats</h4>
 					<ul>
-						<li ng-repeat="(stat, value) in corp.stats">
+						<li ng-repeat="(stat, value) in corp.totalStats">
 							{{ stat }} : <strong>{{ value }}</strong>
 						</li>
 					</ul>
@@ -94,11 +94,11 @@
 				<dd>
 					<dl>
 						<dt><i class="fa fa-bar-chart"></i></dt>
-						<dd>{{corp.stats.product}}</dd>
+						<dd>{{corp.totalStats.product}}</dd>
 						<dt><i class="fa fa-shield"></i></dt>
-						<dd>{{corp.stats.security}}</dd>
+						<dd>{{corp.totalStats.security}}</dd>
 						<dt><i class="fa fa-user-secret"></i></dt>
-						<dd>{{corp.stats.espionage}}</dd>
+						<dd>{{corp.totalStats.espionage}}</dd>
 					</dl>
 				</dd>
 			</dl>

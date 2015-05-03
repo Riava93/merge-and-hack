@@ -1,5 +1,12 @@
 GameStats = require '../GameStats'
 
+clone = (obj) ->
+	return obj  if obj is null or typeof (obj) isnt "object"
+	temp = new obj.constructor()
+	for key of obj
+		temp[key] = clone(obj[key])
+	temp
+
 class MegaCorporation
 	constructor: (@id, @icon) ->
 		@name = @constructor.name
@@ -8,6 +15,18 @@ class MegaCorporation
 		@cash = 0
 		@subsidiaries = [] # subsidiary company cards
 		@events = [] # event cards
+		@initialize()
+
+	initialize: ->
+		@calculateTotalStats()
+
+	calculateTotalStats: ->
+		@totalStats = clone @stats
+		for subsidiary in @subsidiaries
+			@totalStats.product += subsidiary.product
+			@totalStats.security += subsidiary.security
+			@totalStats.espionage += subsidiary.espionage
+		console.log 'total stats', @totalStats
 
 	tick: (board, wasHackAttempted) ->
 		for subsidiary in @subsidiaries
@@ -31,5 +50,6 @@ class MegaCorporation
 			if event.shouldExpire()
 				event.ownerGrouping.discard event
 				@events.splice i, 1
+		@calculateTotalStats()
 
 module.exports = MegaCorporation
