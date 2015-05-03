@@ -187,6 +187,11 @@ ol.rules-list
     .subsidiary-info
       display: none
 
+.corp-stat
+  transition: background-color 0.26s linear 0s
+  &[class*="-add"]
+    background-color: yellow
+
 .event-card-piles
   position: absolute
   top: 0
@@ -288,7 +293,7 @@ div.card
   margin: auto
   text-align: center
   &.ng-enter, &.ng-leave
-    -webkit-transition: all linear 0.4s 0.5s
+    -webkit-transition: all linear 0.4s 0.1s
 
   &.ng-enter, &.ng-leave.ng-leave-active
     opacity: 0

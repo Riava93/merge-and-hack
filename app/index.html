@@ -89,15 +89,15 @@
 			<h3 class="{{corp.color}}">{{corp.name | prettyName}}</h3>
 			<dl class="corp-stats">
 				<dt><i class="fa fa-money fa-fw"></i></dt>
-				<dd>{{corp.cash | prettyMoney }}</dd>
+				<dd class="corp-stat value-{{corp.cash}}">{{corp.cash | prettyMoney }}</dd>
 				<dd>
 					<dl>
 						<dt><i class="fa fa-bar-chart fa-fw"></i></dt>
-						<dd>{{corp.totalStats.product}}</dd>
+						<dd class="corp-stat value-{{corp.cash}}">{{corp.totalStats.product}}</dd>
 						<dt><i class="fa fa-shield fa-fw"></i></dt>
-						<dd>{{corp.totalStats.security}}</dd>
+						<dd class="corp-stat value-{{corp.cash}}">{{corp.totalStats.security}}</dd>
 						<dt><i class="fa fa-user-secret fa-fw"></i></dt>
-						<dd>{{corp.totalStats.espionage}}</dd>
+						<dd class="corp-stat value-{{corp.cash}}">{{corp.totalStats.espionage}}</dd>
 					</dl>
 				</dd>
 			</dl>
