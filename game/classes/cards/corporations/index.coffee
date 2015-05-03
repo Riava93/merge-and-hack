@@ -34,7 +34,7 @@ class MegaCorporation extends Card
 				@stats.espionage += event.currentBonus if event.bonusType is 'espionage'
 				@stats.product += event.currentBonus if event.bonusType is 'product'
 
-			event.tick()
+			event.tick board, @
 			if event.shouldExpire()
 				event.ownerGrouping.discard event
 				@events.splice i, 1
@@ -49,6 +49,7 @@ class SparkFresh extends MegaCorporation
 		@stats.product = 5
 		@stats.security = 3
 		@stats.espionage = 3
+		@cash = 100
 		@description = 'A product focused company that grew to prominence with affiliate marketing. No one likes to talk about those days.'
 
 class BubbleHearth extends MegaCorporation
@@ -57,6 +58,7 @@ class BubbleHearth extends MegaCorporation
 		@stats.product = 3
 		@stats.security = 5
 		@stats.espionage = 3
+		@cash = 50
 		@description = 'A security focused company that made it\'s fortune from providing insurance on virtual game items'
 
 class Tinjeki extends MegaCorporation
@@ -65,6 +67,7 @@ class Tinjeki extends MegaCorporation
 		@stats.product = 3
 		@stats.security = 3
 		@stats.espionage = 5
+		@cash = 10
 		@description = 'A suspicious company with year on year growth but no clear business model. They seem to have some effective techniques.'
 
 module.exports =

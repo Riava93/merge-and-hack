@@ -181,9 +181,9 @@ class Results
 			@attacker.subsidiaries.push reward
 			console.log "Awared subsidiary: #{reward.name} => #{@attacker.name}"
 		else if @defender.cash > 0
-			@attacker.cash += 150
-			@defender.cash -= 150
-			console.log "#{@attacker.name} stole $150.00 from #{@defender.name}"
+			@attacker.cash += 1
+			@defender.cash -= 1
+			console.log "#{@attacker.name} stole $1M from #{@defender.name}"
 		else
 			console.log "#{@defender.name} has absolutely nothing to take! Quit picking on them!"
 

@@ -16,6 +16,7 @@
 	- descriptions (50% complete)
 
 - GAME OVER conditions
+- reshuffle card groups when getting low
 
 - cash management
 - paying cash for mergers, or having to cancel if not enough money

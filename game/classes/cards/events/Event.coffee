@@ -8,8 +8,10 @@ class Event extends Card
 		@hasMerged = false
 		@currentBonus = 0
 
-	tick: ->
-		super()
+	tick: (board, corp) ->
+		super board
+		console.log 'corp cash', corp.cash, 'adding product value', @stats.product
+		corp.cash += @stats.product
 		if @expiry isnt -1
 			@expiry--
 
@@ -20,7 +22,6 @@ class Event extends Card
 		@hasMerged = true
 
 	resetBonus: ->
-
 
 	shouldExpire: ->
 		return @expiry is 0

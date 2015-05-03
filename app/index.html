@@ -62,6 +62,7 @@
 					<i class="fa fa-{{corp.icon}} fa-3x"></i>
 					<p>{{ corp.description }}</p>
 
+					<h4>Starting Cash: ${{corp.cash}}M</h4>
 					<h4>Stats</h4>
 					<ul>
 						<li ng-repeat="(stat, value) in corp.stats">
@@ -69,9 +70,7 @@
 						</li>
 					</ul>
 
-					<button class="button" ng-click="setPlayer(corp)">
-						Choose
-					</button>
+					<button class="button" ng-click="setPlayer(corp)">Choose</button>
 				</div>
 			</section>
 		</div>
@@ -87,7 +86,7 @@
 			<h3>{{corp.name}}</h3>
 			<dl>
 				<dt><i class="fa fa-money"></i></dt>
-				<dd>{{corp.cash}}</dd>
+				<dd>${{corp.cash}}M</dd>
 				<dd>
 					<dl>
 						<dt><i class="fa fa-bar-chart"></i></dt>
