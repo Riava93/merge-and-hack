@@ -75,7 +75,7 @@ class ReduceExposure extends SecurityEvent
 class GetOffOfWordPress extends SecurityEvent
 	constructor: ->
 		super()
-		@description = ''
+		@description = 'This has just be asking for trouble since we launched.'
 
 class Insurance extends SecurityEvent
 	constructor: ->

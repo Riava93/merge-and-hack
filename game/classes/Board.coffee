@@ -1,5 +1,5 @@
 cardGroupings = require './cardGroupings'
-corporations = require './cards/corporations'
+corporations = require './corporations'
 AI = require './AI'
 HackPuzzle = require './HackPuzzle'
 

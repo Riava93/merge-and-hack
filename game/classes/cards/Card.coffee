@@ -1,10 +1,4 @@
-# All cards in the game will have game stats
-class GameStats
-	constructor: ->
-		@product = 0
-		@security = 0
-		@espionage = 0
-
+GameStats = require '../GameStats'
 #Everything will be a card
 class Card
 	constructor: (@id, @icon = 'none') ->
