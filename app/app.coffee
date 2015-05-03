@@ -44,8 +44,11 @@ angular.module 'mergeAndHack', ['ngAnimate']
 		###
 		# Prelim
 		###
-  #	$scope.chooseCorporation()
-	#	$scope.setPlayer _theGame.board.players[0]
+		$scope.chooseCorporation()
+		$scope.setPlayer _theGame.board.players[0]
+		#_theGame.board.selectCard 0, 0
+		#_theGame.board.selectHack()
+		#_theGame.board.confirmHack _theGame.board.players[1]
 
 	.filter 'prettyPercent', ->
 		return (double) ->

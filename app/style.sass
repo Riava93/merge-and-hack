@@ -75,8 +75,8 @@ h1, h2, h3, h4, h5, h6
   margin: 5/$em 0
 
 h1
-  margin: 20/$em 0 0
-  font-size: 32/$em
+  margin: 20/$em 0
+  font-size: 64/$em
 
 h2
   margin: 10/$em 0
@@ -100,12 +100,12 @@ ol.rules-list
   bottom: 10/$em
   left: 10/$em
   text-align: center
-  border: 2/$em  solid #CCC
+  box-shadow: 0 0 0 1px lighten($color-black, 12%)
   padding: 10/$em
   width: 20%
 
 .mega-corporation
-  border: 2/$em  solid #CCC
+  box-shadow: 0 0 0 1px lighten($color-black, 12%)
   position: absolute
   z-index: 50
   width: 30%
@@ -510,9 +510,10 @@ div.card
     .revealed-cell
       width: 25px
       height: 25px
-      float: none
+      float: left
       margin: 10px
       box-shadow: inset 0 0 0 2px green
+      color: green
       display: flex
       align-items: center
       justify-content: space-around
@@ -520,6 +521,7 @@ div.card
 
       &.badCell
         box-shadow: inset 0 0 0 2px red
+        color: red
 
 
 .turn-results

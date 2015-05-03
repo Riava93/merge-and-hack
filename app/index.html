@@ -77,11 +77,7 @@
 		</div>
 
 		<div class="info-box">
-			<h3>Game Info</h3>
-			Current player: {{game.board.players[game.board.turn].name}}
-			<br />
-			<br />
-			Current Month: {{game.board.monthsPassed}}
+			<h3>Month {{game.board.monthsPassed + 1}} / 24</h3>
 		</div>
 
 		<div class="mega-corporation player-{{$index + 1}}" ng-repeat="corp in game.board.players">
@@ -186,8 +182,10 @@
 				<div class="puzzle-container">
 					<div class="puzzle-row" ng-repeat="row in game.board.hackPuzzle.cells_grid">
 						<div class="puzzle-cell" ng-repeat="cell in row">
-							<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">?</button>
-							<span class="revealed-cell" ng-class="{'badCell': !cell.isSafe }" ng-if="cell.isRevealed">{{cell.value}}</span>
+							<button ng-if="!cell.isRevealed" ng-click="revealPuzzleCell(cell.x, cell.y)">
+								<i class="fa fa-question fa-2x dark-blue"></i>
+							</button>
+							<span class="revealed-cell" ng-class="{'badCell': !cell.isSafe }" ng-if="cell.isRevealed"><i class="fa fa-{{cell.isSafe ? 'check' : 'bomb'}}"></i></span>
 						</div>
 					</div>
 				</div>
