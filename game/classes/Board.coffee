@@ -34,8 +34,8 @@ class Board
 		@turn = -1 # No turn yet, first call to nextTurn() will let player 1 go first
 		@players = [
 			new corporations.SparkFresh
-			new corporations.SomethingCorp
-			new corporations.OtherCorp
+			new corporations.Tinjeki
+			new corporations.BubbleHearth
 		]
 		@cardGroups = [
 			new cardGroupings.ProductCardGrouping

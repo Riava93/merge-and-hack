@@ -7,7 +7,7 @@ class AI
 		randNum = Math.random()
 		if randNum > 0.5
 			board.selectMerge()
-			board.confirmMerge yes
+			board.confirmMerger yes
 		else
 			board.selectHack()
 			board.confirmHack board.players[0]

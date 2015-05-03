@@ -50,21 +50,21 @@ class SparkFresh extends MegaCorporation
 		@stats.security = 3
 		@stats.espionage = 3
 
-class SomethingCorp extends MegaCorporation
+class BubbleHearth extends MegaCorporation
 	constructor: ->
-		super 'Something Inc.', 'bomb'
+		super 'Bubble Hearth Industries', 'bomb'
 		@stats.product = 3
 		@stats.security = 3
 		@stats.espionage = 5
 
-class OtherCorp extends MegaCorporation
+class Tinjeki extends MegaCorporation
 	constructor: ->
-		super 'Other Stuff Inc.', 'bomb'
+		super 'Tinjeki Corporation', 'bomb'
 		@stats.product = 3
 		@stats.security = 5
 		@stats.espionage = 3
 
 module.exports =
 	SparkFresh: SparkFresh,
-	SomethingCorp: SomethingCorp,
-	OtherCorp: OtherCorp
+	BubbleHearth: BubbleHearth
+	Tinjeki: Tinjeki
