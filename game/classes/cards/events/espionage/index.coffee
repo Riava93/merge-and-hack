@@ -3,6 +3,7 @@ Event = require '../Event'
 class EspionageEvent extends Event
 	constructor: (id, icon) ->
 		super id, icon
+		@type = 'espionage'
 
 class UnhashedPasswordFile extends EspionageEvent
 	constructor: ->

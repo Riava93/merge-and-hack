@@ -3,6 +3,7 @@ Event = require '../Event'
 class SecurityEvent extends Event
 	constructor: (id, icon) ->
 		super id, icon
+		@type = 'security'
 		@bonusType = 'security'
 
 class HashedPasswords extends SecurityEvent

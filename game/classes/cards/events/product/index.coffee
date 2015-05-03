@@ -3,6 +3,7 @@ Event = require '../Event'
 class ProductEvent extends Event
 	constructor: (id, icon) ->
 		super id, icon
+		@type = 'product'
 		@expiry = 1
 
 class SuccessfulSprint extends ProductEvent

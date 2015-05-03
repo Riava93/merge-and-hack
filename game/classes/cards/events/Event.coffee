@@ -3,6 +3,7 @@ Card = require '../Card'
 class Event extends Card
 	constructor: (id, icon) ->
 		super id, icon
+		@type = null
 		@value = 0
 		@expiry = -1
 		@hasMerged = false
