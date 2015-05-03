@@ -101,10 +101,7 @@ class Board
 
 	reshuffleEmptyDecks: ->
 		for group in @cardGroups
-			if group.newStack.length <= 2
-				debugger
-				#console.log "%c Reshuffling #{group}", "background: #008aff; color: white;"
-				group.shuffle()
+			group.shuffle()
 
 	nextTurn: ->
 		@shouldGameEnd true, false
