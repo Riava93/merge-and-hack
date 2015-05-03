@@ -2,7 +2,7 @@
 <html ng-app="mergeAndHack">
 	<head>
 		<meta charset="utf-8">
-		<title>Game Jam Game</title>
+		<title>Mergers &amp; Haquisitions</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="/app.css">
@@ -11,16 +11,17 @@
 	<body ng-controller="GameController">
 
 		<div ng-if="game.board.state.current === game.board.state.GAME_INFO" class="getting-started">
-			<h1>Mergers & Hacquisitions</h1>
+			<h1>Mergers &amp; Hacquisitions</h1>
 
 			<section class="game-details">
 				<section class="about-game">
 					<h2>It's all come to this...</h2>
 					<p>
-						In the not so distant future, web security is out of control. Law makers have absolved themselves of the responsibility policing cyber attacks. It is up to corporations to protect their own assets or face the price. It is the age of Mergers and Hacquisitions.
+						In the not so distant future, web security is out of control. Law makers have absolved themselves of the responsibility policing cyber attacks. It is up to corporations to protect their own assets or face the price.
 					</p>
+					<h4>This is the age of Mergers and Hacquisitions.</h4>
 					<p>
-						You have been appointed CEO of one of the last 3 remaining corporations and have 2 years to prove your worth to the investors. Good luck.
+						You haves been appointed CEO of one of the last 3 remaining corporations and have 2 years to prove your worth to the investors. Good luck.
 					</p>
 				</section>
 
@@ -52,12 +53,14 @@
 
 		<div class="chooseCorporation" ng-if="game.board.state.current === game.board.state.CHOOSE_CORP">
 			<h1>
-				Which Corporation would you like to play?
+				Which Corporation will you play as?
 			</h1>
 
 			<section class="corporations">
 				<div class="corporation" ng-repeat="corp in game.board.players">
 					<h4 class="corp-name">{{ corp.name }}</h4>
+					<i class="fa fa-{{corp.icon}} fa-3x"></i>
+					<p>{{ corp.description }}</p>
 
 					<h4>Stats</h4>
 					<ul>

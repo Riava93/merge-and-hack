@@ -15,6 +15,8 @@
 	- icon choices
 	- descriptions (50% complete)
 
+- GAME OVER conditions
+
 - cash management
 - paying cash for mergers, or having to cancel if not enough money
 - subsidiary value numbers
