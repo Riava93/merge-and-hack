@@ -100,6 +100,21 @@ ol.rules-list
     &:hover, &:active
       .subsidiary-info
         display: block
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        padding: 10/$em
+        background: grey
+        color: white
+
+        &:after
+          content: ''
+          border-left: 10px solid transparent
+          border-right: 10px solid transparent
+          border-top: 10px solid grey
+          position: absolute
+          bottom: -9px
+          left: 5px
 
     .subsidiary-info
       display: none

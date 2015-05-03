@@ -67,7 +67,7 @@ class Board
 
 	#  Check if it has been two years
 	hasTwoYearsPassed: ->
-		if @monthsPassed >= 2 # TODO: change this to 24 when done testing
+		if @monthsPassed >= 24
 			@state.current = @state.GAME_OVER
 			winner = @getPlayerWithHighestValue()
 			@endGameResult = new GameResult 'two_year', winner, { details: 'They had the highest wealth of all players' }
