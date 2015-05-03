@@ -12,7 +12,7 @@ class MegaCorporation extends Card
 		@events = [] # event cards
 		@totalTrust = 0
 
-	tick: (board, wasHacked) ->
+	tick: (board, wasHackAttempted) ->
 		console.log '-----------'
 		console.log @name, 'tick'
 		console.log '-----------'
@@ -21,7 +21,7 @@ class MegaCorporation extends Card
 			subsidiary.tick()
 		for event, i in @events
 			event.merge @ if event.hasMerged isnt true
-			if wasHacked
+			if wasHackAttempted and board.getCurrentPlayer() is @
 				console.log "tick event: A hack has been done"
 				@stats.security -= event.currentBonus if event.bonusType is 'security'
 				@stats.espionage -= event.currentBonus if event.bonusType is 'espionage'

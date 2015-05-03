@@ -81,13 +81,10 @@ class Board
 	triggerTick: ->
 		console.log "TRIGGER TICK CURRENT STATE: #{@state.current}"
 		for corp in @players
-			if @onHack()
-				corp.tick @, true
-			else
-				corp.tick @, false
+			corp.tick @, @didHackThisTurn()
 
-	onHack: ->
-		@state.current is @state.TURN_RESULT
+	didHackThisTurn: ->
+		@state.current is @state.TURN_HACKING
 
 	endTurn: ->
 		@resetTurnRecap()
@@ -144,14 +141,12 @@ class Board
 		isHackOver = @hackPuzzle.activateCell(x, y)
 		if isHackOver
 			console.log 'the hack is over'
+			@triggerTick()
+			@state.current = @state.TURN_RESULT
 			if @hackPuzzle.hackSuccessful
-				@state.current = @state.TURN_RESULT
-				@triggerTick()
 				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve successfully hacked your target', @hackPuzzle.attacker, @hackPuzzle.defender
 				@addToTurnRecap "#{@hackPuzzle.attacker.name} successfully hacked #{@hackPuzzle.defender.name}"
 			else
-				@state.current = @state.TURN_RESULT
-				@triggerTick()
 				@outcome = new Results 'hacquisition', @hackPuzzle.hackSuccessful, 'You\'ve failed to successfully hack your target', @hackPuzzle.attacker, @hackPuzzle.defender
 				@addToTurnRecap "#{@hackPuzzle.attacker.name} failed to hack #{@hackPuzzle.defender.name}"
 		else
