@@ -38,7 +38,7 @@ class NewHardware extends EspionageEvent
 	constructor: ->
 		super @constructor.name, 'server'
 		@stats.espionage = 3
-		@expiry = -1
+		@expiry = 12
 		@description = 'If we invest in better hardware we can attempt hacking puzzles with greater success.'
 
 class ManInTheMiddle extends EspionageEvent
