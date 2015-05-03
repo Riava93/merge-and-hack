@@ -5,6 +5,7 @@ class SecurityEvent extends Event
 		super id, icon
 		@type = 'security'
 		@bonusType = 'security'
+		@color = 'medium-blue'
 
 class HashedPasswords extends SecurityEvent
 	constructor: ->

@@ -11,6 +11,7 @@ class MegaCorporation
 	constructor: (@id, @icon) ->
 		@name = @constructor.name
 		@stats = new GameStats
+		@color = 'black'
 		@description = ''
 		@cash = 0
 		@subsidiaries = [] # subsidiary company cards

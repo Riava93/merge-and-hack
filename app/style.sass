@@ -11,9 +11,23 @@ $color-black: #34393B
 $color-orange: #F29372
 $color-dark-blue: #476D7A
 $color-medium-blue: #5F919D
+$color-green: #ADD497
 $color-grey: #636564
 
-$darkgrey: #35393C
+.white
+  color: $color-white
+.black
+  color: $color-black
+.orange
+  color: $color-orange
+.dark-blue
+  color: $color-dark-blue
+.medium-blue
+  color: $color-medium-blue
+.green
+  color: $color-green
+.grey
+  color: $color-grey
 
 $font-size: 16
 
@@ -108,7 +122,7 @@ ol.rules-list
     justify-content: center
 
   &.player-1
-    bottom: 0
+    bottom: 10/$em
     margin-left: 35%
 
   &.player-2
@@ -255,6 +269,9 @@ div.card
       text-align: center
       padding: 10/$em
       -webkit-transform: rotatey(180deg)
+      i.fa
+        background-color: $color-black
+        padding: 3/$em
     &.back
       background-color: #aaa
       i
@@ -521,12 +538,12 @@ div.card
   justify-content: center
   align-items: center
   z-index: 600
-  background: $darkgrey
+  background: $color-grey
   color: white
 
   h2
     font-variant: small-caps
     font-size: 6em
-    text-shadow: 0 0 1px darken($darkgrey, 10%)
+    text-shadow: 0 0 1px darken($color-grey, 10%)
     margin: 0
     text-transform: lowercase

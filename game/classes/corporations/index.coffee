@@ -5,6 +5,7 @@ class Sparkfresh extends MegaCorporation
 	constructor: ->
 		super 'SparkFresh Inc.', 'bolt'
 		@affinity = 'product'
+		@color = 'green'
 
 	initialize: ->
 		@stats.product = 5
@@ -18,6 +19,7 @@ class BubbleHearth extends MegaCorporation
 	constructor: ->
 		super 'Bubble Hearth Industries', 'sun-o'
 		@affinity = 'security'
+		@color = 'medium-blue'
 
 	initialize: ->
 		@stats.product = 3
@@ -31,6 +33,7 @@ class Tinjeki extends MegaCorporation
 	constructor: ->
 		super 'Tinjeki Corporation', 'database'
 		@affinity = 'espionage'
+		@color = 'orange'
 
 	initialize: ->
 		@stats.product = 3

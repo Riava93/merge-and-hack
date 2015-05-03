@@ -5,6 +5,7 @@ class ProductEvent extends Event
 		super id, icon
 		@type = 'product'
 		@expiry = 1
+		@color = 'green'
 
 class SuccessfulSprint extends ProductEvent
 	constructor: ->
