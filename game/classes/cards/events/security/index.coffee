@@ -61,7 +61,7 @@ class SecureSessions extends SecurityEvent
 		@expiry = 1
 		@description = 'We need more secure session that can\'t be comprimised'
 
-class OAuthAccess extends SecurityEvent
+class OauthAccess extends SecurityEvent
 	constructor: ->
 		super @constructor.name, 'circle-o-notch'
 		@stats.security = 1
@@ -82,7 +82,7 @@ class ReduceExposure extends SecurityEvent
 		@expiry = 1
 		@description = 'There is opportunity to expose less potentially critical data from servers'
 
-class GetOffOfWordPress extends SecurityEvent
+class GetOffOfWordpress extends SecurityEvent
 	constructor: ->
 		super @constructor.name, 'wordpress'
 		@stats.security = 1
@@ -105,8 +105,8 @@ module.exports =
 	CSRFTokens: CSRFTokens
 	ReduceVulnerabilities: ReduceVulnerabilities
 	SecureSessions: SecureSessions
-	OAuthAccess: OAuthAccess
+	OauthAccess: OauthAccess
 	ConsistentSecurity: ConsistentSecurity
 	ReduceExposure: ReduceExposure
-	GetOffOfWordPress: GetOffOfWordPress
+	GetOffOfWordpress: GetOffOfWordpress
 	Insurance: Insurance

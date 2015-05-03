@@ -11,8 +11,7 @@
 	<body ng-controller="GameController">
 
 		<div ng-if="game.board.state.current === game.board.state.GAME_INFO" class="getting-started">
-			<h1>Mergers &amp; Hacquisitions</h1>
-
+			<h1><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i> Mergers &amp; <i class="fa fa-download"></i> Hacquisitions</h1>
 			<section class="game-details">
 				<section class="about-game">
 					<h2>It's all come to this...</h2>
@@ -60,7 +59,7 @@
 
 			<section class="corporations">
 				<div class="corporation" ng-repeat="corp in game.board.players">
-					<h4 class="corp-name">{{ corp.name }}</h4>
+					<h4 class="corp-name">{{ corp.name | prettyName}}</h4>
 					<i class="fa fa-{{corp.icon}} fa-3x"></i>
 					<p>{{ corp.description }}</p>
 
@@ -87,7 +86,7 @@
 		</div>
 
 		<div class="mega-corporation player-{{$index + 1}}" ng-repeat="corp in game.board.players">
-			<h3>{{corp.name}}</h3>
+			<h3>{{corp.name | prettyName}}</h3>
 			<dl>
 				<dt><i class="fa fa-money"></i></dt>
 				<dd>${{corp.cash}}M</dd>
@@ -117,7 +116,9 @@
 			<div class="card-group" ng-repeat="cardGroup in game.board.cardGroups">
 				<div class="card flipped-{{card.isFlipped}} retained-{{card.isRetained}} visible-{{card.isVisible}}" ng-repeat="card in cardGroup.allCards">
 					<div class="front face" ng-click="selectEventCard($parent.$index)">
-						<h5>{{card.name}}</h5>
+						<i class="fa fa-{{card.icon}} fa-3x"></i>
+						<h5>{{card.name | prettyName}}</h5>
+						<p class="event-description">{{card.description}}</p>
 					</div>
 					<div class="back face">
 						<i class="fa fa-{{cardGroup.icon}}"></i>
@@ -145,6 +146,7 @@
 					<div class="subsidiary-info">
 						<h4>{{subsidiary.name}}</h4>
 						<h4>Cost: {{subsidiary.value | prettyMoney}}</h4>
+						<p>{{subsidiary.description}}</p>
 					</div>
 					<div class="buttons-contain" ng-if="subsidiary.value <= game.board.getCurrentPlayer().cash">
 						<button class="modal-button" ng-click="confirmMerger(true)">YES</button>

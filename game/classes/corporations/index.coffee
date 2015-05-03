@@ -1,7 +1,7 @@
 MegaCorporation = require './Corporation'
 subsidiaries = require '../cards/subsidiaries'
 
-class SparkFresh extends MegaCorporation
+class Sparkfresh extends MegaCorporation
 	constructor: ->
 		super 'SparkFresh Inc.', 'bolt'
 		@affinity = 'product'
@@ -41,6 +41,6 @@ class Tinjeki extends MegaCorporation
 		super()
 
 module.exports =
-	SparkFresh: SparkFresh,
+	Sparkfresh: Sparkfresh,
 	BubbleHearth: BubbleHearth
 	Tinjeki: Tinjeki

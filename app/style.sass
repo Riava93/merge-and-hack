@@ -1,7 +1,14 @@
 @import 'compass'
 @import 'compass/reset'
 
-// colours
+// colour scheme
+
+$color-white: #FFF
+$color-black: #34393B
+$color-orange: #F29372
+$color-dark-blue: #476D7A
+$color-medium-blue: #5F919D
+$color-grey: #636564
 
 $darkgrey: #35393C
 
@@ -20,6 +27,8 @@ $em: $font-size / 1em
 html
   height: 100%
   overflow: hidden
+  background-color: $color-black
+  color: $color-white
 
 body
   font:
@@ -37,11 +46,11 @@ h1, h2, h3, h4, h5, h6
   margin: 5/$em 0
 
 h1
-  margin: 20/$em 0
+  margin: 20/$em 0 0
   font-size: 32/$em
 
 h2
-  margin: 20/$em 0
+  margin: 10/$em 0
   font-size: 28/$em
 
 h3
@@ -133,14 +142,14 @@ ol.rules-list
   position: relative
   margin: 0 10/$em
   border: 1/$em solid #CCC
-  width: 150/$em
-  height: 200/$em
+  width: 214/$em
+  height: 295/$em
   -webkit-perspective: 1000
 
 div.card
   margin: 5/$em
-  width: 136/$em
-  height: 190/$em
+  width: 204/$em
+  height: 285/$em
   position: absolute
   z-index: 10
   top: 0
@@ -148,7 +157,7 @@ div.card
   float: left
   border: 1/$em solid transparent
   -webkit-transform-style: preserve-3d
-  -webkit-transition: -webkit-transform 1.66s linear, top 0.66s linear, left 0.66s linear, opacity 0.66s linear
+  -webkit-transition: -webkit-transform 1.66s linear, top 0.36s linear, left 0.66s linear, opacity 0.66s linear
 
   &.flipped-true
     z-index: 100
@@ -156,6 +165,7 @@ div.card
     &:hover
       border: 1/$em solid #333
       cursor: pointer
+      top: -10/$em
 
     .face.back
       opacity: 0
@@ -171,12 +181,16 @@ div.card
     top: 40/$em
 
   .face
+    box-sizing: border-box
     -webkit-backface-visibility: hidden
     background-color: #ddd
     position: absolute
     width: 100%
     height: 100%
     &.front
+      color: $color-black
+      text-align: center
+      padding: 10/$em
       -webkit-transform: rotatey(180deg)
     &.back
       background-color: #aaa
@@ -195,7 +209,7 @@ div.card
   left: 0
   right: 0
   bottom: 0
-  background: white
+  background: $color-black
   z-index: 300
   display: flex
   flex-direction: column
@@ -230,7 +244,7 @@ div.card
   right: 0
   bottom: 0
   padding-top: 50px
-  background: white
+  background: $color-black
   z-index: 300
   display: flex
   flex-direction: column

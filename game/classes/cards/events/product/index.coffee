@@ -1,8 +1,8 @@
 Event = require '../Event'
 
 class ProductEvent extends Event
-	constructor: (id) ->
-		super id
+	constructor: (id, icon) ->
+		super id, icon
 		@expiry = 1
 
 class SuccessfulSprint extends ProductEvent

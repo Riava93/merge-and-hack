@@ -42,4 +42,11 @@ angular.module 'mergeAndHack', ['ngAnimate']
 
 	.filter 'prettyMoney', ->
 		return (int) ->
-			return "$#{int}M"
+			return "$#{int}B"
+
+	.filter 'prettyName', ->
+		return (name) ->
+			theName = name.replace(/([a-z])([A-Z])/g, '$1 $2')
+				.replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
+				.replace(/^./, (str) -> return str.toUpperCase())
+			return theName
