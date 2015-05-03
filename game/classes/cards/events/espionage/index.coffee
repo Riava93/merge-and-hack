@@ -3,11 +3,8 @@ Event = require '../Event'
 class EspionageEvent extends Event
 	constructor: (id, icon) ->
 		super id, icon
-<<<<<<< Updated upstream
 		@type = 'espionage'
-=======
 		@color = 'orange'
->>>>>>> Stashed changes
 
 class UnhashedPasswordFile extends EspionageEvent
 	constructor: ->
