@@ -31,7 +31,8 @@ class MegaCorporation
 	tick: (board, wasHackAttempted) ->
 		for subsidiary in @subsidiaries
 			subsidiary.tick()
-		for event, i in @events
+		for i in [(@events.length - 1)..0] by -1 #@events
+			event = @events[i]
 			event.merge @
 			if wasHackAttempted and board.getCurrentPlayer() is @
 				console.log "tick event: A hack has been done"

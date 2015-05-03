@@ -256,7 +256,6 @@ class HackResult extends Results
 			@attacker.subsidiaries.push reward
 			console.log "Awarded subsidiary: #{reward.name} => #{@attacker.name}"
 		else if @defender.cash > 0
-			debugger
 			@attacker.cash += 2
 			@defender.cash -= 2
 			console.log "#{@attacker.name} stole $1M from #{@defender.name}"
