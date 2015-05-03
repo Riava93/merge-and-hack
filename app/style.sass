@@ -526,6 +526,20 @@ div.card
   .buttons-contain
     margin: 24px auto
 
+.choose-card-title
+  position: absolute
+  left: 50%
+  top: 15%
+  transform: translateX(-50%)
+
+  &.ng-enter, &.ng-leave
+    -webkit-transition: all linear 0.6s
+
+  &.ng-enter, &.ng-leave.ng-leave-active
+    opacity: 0
+
+  &.ng-leave, &.ng-enter.ng-enter-active
+    opacity: 1
 
 .game-over
   position: absolute
@@ -538,7 +552,7 @@ div.card
   justify-content: center
   align-items: center
   z-index: 600
-  background: $color-grey
+  @extend %background
   color: white
 
   h2

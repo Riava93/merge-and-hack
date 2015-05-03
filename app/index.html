@@ -114,6 +114,7 @@
 			</ul>
 		</div>
 
+		<h1 class="choose-card-title" ng-if="game.board.state.current === game.board.state.TURN_START">Choose a Card</h1>
 		<div class="event-card-piles">
 			<div class="card-group" ng-repeat="cardGroup in game.board.cardGroups">
 				<div class="card flipped-{{card.isFlipped}} retained-{{card.isRetained}} visible-{{card.isVisible}}" ng-repeat="card in cardGroup.allCards">
