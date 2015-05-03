@@ -19,6 +19,14 @@ $em: $font-size / 1em
 .ng-cloak
   display: none !important
 
+@keyframes blink
+  to
+    visibility: hidden
+
+@-webkit-keyframes blink
+  to
+    visibility: hidden
+
 *
   -webkit-touch-callout: none
   -webkit-user-select: none
@@ -69,10 +77,13 @@ ol.rules-list
     margin-bottom: 5/$em
 
 .info-box
+  box-sizing: border-box
   position: absolute
-  bottom: 0
-  left: 0
+  bottom: 10/$em
+  left: 10/$em
+  text-align: center
   border: 2/$em  solid #CCC
+  padding: 10/$em
   width: 20%
 
 .mega-corporation
@@ -111,6 +122,7 @@ ol.rules-list
 
   ul.subsidiaries
     list-style-type: none
+    min-height: 40/$em
   li.subsidiary
     float: left
     box-sizing: border-box
@@ -121,15 +133,19 @@ ol.rules-list
     height: 40/$em
 
     &.ng-enter, &.ng-leave
-      -webkit-transition: all linear 0.5s
+      -webkit-transition: all linear 1.2s
 
     &.ng-enter, &.ng-leave.ng-leave-active
       opacity: 0
       -webkit-transform: translateY(-40/$em)
+      animation: blink 1s steps(5, start) infinite
+      -webkit-animation: blink 0.45s steps(5, start) infinite
 
     &.ng-leave, &.ng-enter.ng-enter-active
       opacity: 1
       -webkit-transform: translateY(0)
+      animation: blink 1s steps(5, start) infinite
+      -webkit-animation: blink 0.45s steps(5, start) infinite
 
     &:hover, &:active
       .subsidiary-info
@@ -206,6 +222,7 @@ div.card
     top: 40/$em
 
   .face
+    text-align: center
     box-sizing: border-box
     -webkit-backface-visibility: hidden
     background-color: #ddd
@@ -231,8 +248,49 @@ div.card
   z-index: 200
   width: 50%
   margin: auto
+  text-align: center
+  &.ng-enter, &.ng-leave
+    -webkit-transition: all linear 0.4s 0.5s
 
-.hack-puzzle
+  &.ng-enter, &.ng-leave.ng-leave-active
+    opacity: 0
+
+  &.ng-leave, &.ng-enter.ng-enter-active
+    opacity: 1
+
+.results-container
+  position: relative
+  min-height: 100/$em
+
+.result-message
+  position: absolute
+  top: 0
+
+  &.index-1
+    top: 20/$em
+
+  &.index-2
+    top: 40/$em
+
+  &.index-3
+    top: 60/$em
+
+  &.index-4
+    top: 80/$em
+
+  &.index-4
+    top: 100/$em
+
+  &.ng-enter, &.ng-leave
+    -webkit-transition: all linear 0.6s
+
+  &.ng-enter, &.ng-leave.ng-leave-active
+    opacity: 0
+    -webkit-transform: translateX(20/$em)
+
+  &.ng-leave, &.ng-enter.ng-enter-active
+    opacity: 1
+    -webkit-transform: translateX(0)
 
 .getting-started
   position: absolute

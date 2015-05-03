@@ -80,7 +80,6 @@
 			<h3>Game Info</h3>
 			Current player: {{game.board.players[game.board.turn].name}}
 			<br />
-			Current State: {{game.board.state.toString()}}
 			<br />
 			Current Month: {{game.board.monthsPassed}}
 		</div>
@@ -124,7 +123,7 @@
 						<p class="event-description">{{card.description}}</p>
 					</div>
 					<div class="back face">
-						<i class="fa fa-{{cardGroup.icon}}"></i>
+						<i class="fa fa-{{cardGroup.icon}} fa-3x"></i>
 						<h5>{{cardGroup.name}}</h5>
 					</div>
 				</div>
@@ -145,9 +144,9 @@
 			<div class="content-contain">
 				<h3>Confirm merger</h3>
 				<div class="subsidiary-option" ng-repeat="subsidiary in game.board.innovationPool.inPlayStack">
-					<i class="fa fa-{{subsidiary.icon}}"></i>
+					<i class="fa fa-{{subsidiary.icon}} fa-3x"></i>
 					<div class="subsidiary-info">
-						<h4>{{subsidiary.name}}</h4>
+						<h4>{{subsidiary.name | prettyName}} Inc.</h4>
 						<h4>Cost: {{subsidiary.value | prettyMoney}}</h4>
 						<p>{{subsidiary.description}}</p>
 					</div>
@@ -175,7 +174,7 @@
 		<div class="hack-puzzle modal" ng-if="game.board.state.current === game.board.state.TURN_HACKING">
 			<div class="content-contain">
 				<h3>Hack your opponent</h3>
-				<p>Get 3 success nodes in a row to succeed</p>
+				<p>Get 3 greens in a line to succeed</p>
 				<dl>
 					<dt>Probability of success</dt>
 					<dd>{{(9 - game.board.hackPuzzle.probability) / 9 | prettyPercent}}</dd>
@@ -196,8 +195,8 @@
 		<div class="turn-results modal" ng-if="game.board.state.current === game.board.state.TURN_RESULT">
 			<div class="content-contain">
 				<h3>Results:</h3>
-				<ul>
-					<li class="result-message" ng-repeat="message in game.board.turnRecap">{{ message }}</li>
+				<ul class="results-container">
+					<li class="result-message index-{{$index}}" ng-repeat="message in game.board.turnRecap">{{ message }}</li>
 				</ul>
 				<div class="buttons-contain">
 					<button class="button" ng-click="confirmResults()">OK</button>
