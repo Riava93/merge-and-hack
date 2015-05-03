@@ -5,7 +5,10 @@ class AI
 		# pick an event card
 		@findOwnWeakness()
 		@chooseCard()
-		@chooseAction()
+		if @weakestStat is 'product' && @me.cash < 30
+			@chooseAction(true)
+		else
+			@chooseAction()
 
 	findOwnWeakness: ->
 		lowestNum = -1
@@ -24,9 +27,13 @@ class AI
 		else
 			@board.selectCard 2
 
-	chooseAction: ->
+	chooseAction: (value) ->
+		value = value || false
 		randInt = Math.random()
-		if randInt > 0.5
+		if randInt > 0.5 or value is true
+			@board.selectHack()
+			@solveHackPuzzle(@selectTarget())
+		else if randInt > 0.5
 			@board.selectMerge()
 			@board.confirmMerger(@me.cash >= @board.innovationPool.inPlayStack[0].value)
 		else

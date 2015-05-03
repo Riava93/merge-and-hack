@@ -39,7 +39,7 @@ class Tinjeki extends MegaCorporation
 		@stats.product = 3
 		@stats.security = 3
 		@stats.espionage = 50
-		@cash = 10
+		@cash = 20
 		@description = 'A suspicious company with year on year growth but no clear business model. They seem to have some effective techniques.'
 		super()
 
