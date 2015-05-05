@@ -11,7 +11,6 @@ class Subsidiary extends Card
 
 	tick: (board, corp) ->
 		super()
-		corp.cash += Math.ceil(@stats.product / 10)
 		@bonusTick()  # Not really implemented
 
 ###

@@ -14,6 +14,8 @@ class Card
 		@isVisible = yes # is showing in the view?
 		@isRetained = no # is contained in a corporation?
 
+	reset: -> # if you need to reset any changing stats on the card..
+
 	tick: (board) ->
 		console.log @name, 'tick'
 

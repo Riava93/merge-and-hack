@@ -102,6 +102,7 @@ class Board
 	reshuffleEmptyDecks: ->
 		for group in @cardGroups
 			group.shuffle()
+		console.log 'board post shuffle', @
 
 	nextTurn: ->
 		@shouldGameEnd true, false

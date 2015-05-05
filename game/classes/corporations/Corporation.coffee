@@ -53,5 +53,6 @@ class MegaCorporation
 				event.ownerGrouping.discard event
 				@events.splice i, 1
 		@calculateTotalStats()
+		@cash += Math.ceil(@totalStats.product / 10)
 
 module.exports = MegaCorporation

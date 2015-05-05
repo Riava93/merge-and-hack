@@ -38,6 +38,8 @@ class CardGrouping
 			@newStack.push @discardStack.shift()
 		for inPlay in @inPlayStack
 			@newStack.push @inPlayStack.shift()
+		for card in @newStack
+			card.reset()
 
 	shuffle: ->
 		@replenishStack()

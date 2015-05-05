@@ -5,16 +5,20 @@ class Event extends Card
 		super id, icon
 		@type = null
 		@value = 0
-		@expiry = -1
+		@expiry = -1 # what ticks down and resets
+		@baseExpiry = -1 # the static setting for the card
 		@hasMerged = false
 		@currentBonus = 0
 
 	tick: (board, corp) ->
 		super board
 		console.log 'corp cash', corp.cash, 'adding product value', @stats.product
-		corp.cash += Math.ceil(@stats.product / 10)
 		if @expiry isnt -1
 			@expiry--
+
+	reset: ->
+		super()
+		@expiry = @baseExpiry
 
 	merge: (currentPlayer) ->
 		currentPlayer?.stats.espionage += @stats.espionage if @stats.espionage?
