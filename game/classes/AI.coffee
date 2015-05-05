@@ -3,8 +3,7 @@ class AI
 
 	think: (@board) ->
 		# pick an event card
-		@findOwnWeakness()
-		@chooseCard()
+		@chooseCard(@findOwnWeakness())
 		if @weakestStat is 'product' && @me.cash < 30
 			@chooseAction(true)
 		else
@@ -29,8 +28,8 @@ class AI
 
 	chooseAction: (value) ->
 		value = value || false
-		randInt = Math.random()
-		if randInt > 0.5 or value is true
+		randInt = Math.random().toFixed(1)
+		if value is true
 			@board.selectHack()
 			@solveHackPuzzle(@selectTarget())
 		else if randInt > 0.5
